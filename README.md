@@ -1,14 +1,13 @@
 ```tree
 .
 └── ~/.config/nixos/
-    ├── hardware/ # 共用硬件配置
-    ├── home-manager/ # 共用 home-manager 配置文件
-    ├── hosts/ # 主机配置/
+    ├── hosts/                                # configurations for hosts
     │   └── [*hostname].nix
-    ├── modules/ # 共用模块
-    ├── users/ # 用户配置/
+    ├── modules/                              # shared modules    
+    ├── users/                                # configurations for users
     │   └── [*username].nix
-    ├── configuration.nix # 默认配置
-    ├── flake.lock # flake 版本锁（一般不用动）
-    └── flake.nix # flake 配置文件
+    ├── configuration.nix                     # default configuation for installation
+    ├── home.nix                              # entry of home-manager
+    ├── flake.lock                            # version locker for Flakes, and do not modify it
+    └── flake.nix                             # flake configuration
 ```
