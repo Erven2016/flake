@@ -1,0 +1,7 @@
+% NixOS
+
+# 构建 NixOS 
+sudo nixos-rebuild <target> --impure --flake "$HOME/.config/nixos#<hostname>" --show-trace
+
+# 更新 Flake
+cd "$HOME/.config/nixos" && nix flake update
