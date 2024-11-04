@@ -17,7 +17,7 @@
 
   home-manager.users.erven2016 = {
 
-    imports = [ ../home-manager ];
+    imports = [ ../home.nix ];
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
