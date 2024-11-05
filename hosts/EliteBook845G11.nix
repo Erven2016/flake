@@ -10,8 +10,22 @@ in
 
     system.flatpak.enable = true;
     system.kvm.enable = true;
+    system.kernel.enableLatestKernel = true;
 
     system.devel.rust.enable = true;
+
+    system = {
+      desktop.gnome = {
+        extraExtensions = with pkgs.gnomeExtensions; [
+          auto-activities
+          gnome-40-ui-improvements
+          alphabetical-app-grid
+          luminus-shell-y
+          blur-my-shell
+          wtmb-window-thumbnails
+        ];
+      };
+    };
 
     # Custom-packages list
     environment.systemPackages = mkMerge [

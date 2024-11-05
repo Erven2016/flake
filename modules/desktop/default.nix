@@ -1,4 +1,8 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib)
     mkIf
@@ -11,13 +15,10 @@ let
   cfg = config.system.desktop;
 in
 {
-  imports = [
-    # import gnome desktop configuration
-    ./gnome
-  ];
+  imports = [ ./gnome ];
 
   options.system.desktop = {
-    enable = mkEnableOption "desktop";
+    enable = mkEnableOption "desktop environment";
     enableWayland = mkEnableOption "wayland compositor";
     preferDesktop = mkOption {
       type = types.str;
@@ -26,6 +27,7 @@ in
   };
 
   config = {
+    # Enable wayland defaultly
     system.desktop.enableWayland = mkDefault true;
   };
 }
