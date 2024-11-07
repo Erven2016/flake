@@ -8,7 +8,11 @@ in
     # 设置时区
     time.timeZone = "Asia/Taipei";
 
-    system.flatpak.enable = true;
+    system.flatpak = {
+      enable = true;
+      enableDevTools = true;
+    };
+
     system.kvm.enable = true;
     system.kernel.enableLatestKernel = true;
 
