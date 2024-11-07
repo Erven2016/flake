@@ -47,6 +47,8 @@ in
         rustup
         gcc
 
+        unstable.devenv
+
         # required by zed nix extension
         nixd
         nixpkgs-fmt
