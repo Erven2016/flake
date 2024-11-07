@@ -10,6 +10,7 @@ let
     mkIf
     mkMerge
     mkForce
+    mkDefault
     ;
 
   cfg = config.system.flatpak;
@@ -24,7 +25,7 @@ in
   config = {
     # 写死，只允许通过封装选项开启，即 config.system.flatpak.enable
     services.flatpak.enable = cfg.enable;
-    system.flatpak.enableDevTools = false; # 默认不安装 flatpak 打包工具
+    system.flatpak.enableDevTools = mkDefault false; # 默认不安装 flatpak 打包工具
 
     # Flatpak XDG portal 依赖
     xdg.portal.enable = mkForce true;
