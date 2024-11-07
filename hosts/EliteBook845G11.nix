@@ -16,6 +16,14 @@ in
 
     system = {
       desktop.gnome = {
+        enableGnomeTerminal = true;
+        excludePackages = with pkgs; [
+          # clean up useless gnome apps
+          gnome-tour
+          # to use warehouse to manage flatpak applications instead of gnome software
+          # running in shell: `flatpak install flathub io.github.flattool.Warehouse`
+          gnome.gnome-software
+        ];
         extraExtensions = with pkgs.gnomeExtensions; [
           auto-activities
           gnome-40-ui-improvements
