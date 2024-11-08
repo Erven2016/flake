@@ -14,7 +14,7 @@ in
     };
 
     system.kvm.enable = true;
-    system.kernel.enableLatestKernel = false;
+    system.kernel.enableLatestKernel = true;
 
     system.devel.rust.enable = true;
 
