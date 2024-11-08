@@ -85,7 +85,8 @@ in
       # Bash, yaml, markdown, nix so on
       extraPackages = with pkgs; [
         # Bash
-        nodePackages.bash-language-server
+        # nodePackages.bash-language-server
+        unstable.bash-language-server
         shfmt
 
         # Nix
