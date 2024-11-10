@@ -1,1 +1,6 @@
-{ imports = [ ./rust ]; }
+{
+  imports = [
+    ./rust
+    ./nodejs
+  ];
+}
