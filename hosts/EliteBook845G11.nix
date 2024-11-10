@@ -1,10 +1,15 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  meta,
+  ...
+}:
 let
   inherit (lib) mkMerge;
 in
 {
   config = {
-    networking.hostName = "EliteBook845G11";
+    networking.hostName = meta.hostname;
     # 设置时区
     time.timeZone = "Asia/Taipei";
 
@@ -14,9 +19,10 @@ in
     };
 
     system.kvm.enable = true;
-    system.kernel.enableLatestKernel = true;
+    system.kernel.enableLatestKernel = false;
 
     system.devel.rust.enable = true;
+    system.devel.nodejs.enable = true;
 
     system = {
       desktop.gnome = {
@@ -96,11 +102,6 @@ in
       };
     };
 
-    programs.appimage = {
-      enable = true;
-      binfmt = true;
-    };
-
     i18n = {
       defaultLocale = "en_US.UTF-8";
       supportedLocales = [
@@ -128,6 +129,7 @@ in
 
     # hardware.steam-hardware.enable = true;
 
+    # to enable fingerprint sensor
     services.fwupd.enable = true;
     services.fprintd = {
       enable = true;
