@@ -1,6 +1,12 @@
-{ lib, current, ... }:
+{
+  lib,
+  current,
+  pkgs,
+  config,
+  ...
+}:
 let
-  inherit (lib) mkMerge;
+  inherit (lib) mkMerge mkIf;
 in
 {
   config = {
@@ -10,7 +16,11 @@ in
       inherit current;
     };
 
-    users.users = lib.genAttrs current.users (username: (import ../users/${username}));
+    users.users = lib.genAttrs current.users (
+      username: mkMerge [ (import ../users/${username} { inherit lib pkgs; }) ]
+
+    );
+
     home-manager.users = lib.genAttrs current.users (
       username:
       (mkMerge [
