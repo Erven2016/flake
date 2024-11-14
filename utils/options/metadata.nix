@@ -1,7 +1,7 @@
 { lib, config, ... }@args:
 let
   inherit (lib) types mkOption mkEnableOption;
-
+  
   cfg = config;
 in
 {
