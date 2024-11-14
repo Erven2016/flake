@@ -19,6 +19,7 @@ in
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = mkForce true;
+      autosuggestion.enable = mkDefault true;
 
       oh-my-zsh = {
         enable = mkDefault true;
