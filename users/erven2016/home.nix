@@ -1,10 +1,21 @@
 { current, pkgs, lib, ... }:
+{
+  current,
+  pkgs,
+  lib,
+  ...
+}:
 let
 inherit (lib) mkDefault;
  in {
   home.packages = with pkgs; [
     unstable.zed
   ];
+  inherit (lib) mkDefault;
+in
+{
+
+  home.programs.zsh.enable = true;
 
   programs.helix = {
     enable = true;

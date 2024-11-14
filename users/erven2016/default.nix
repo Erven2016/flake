@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
 
   isNormalUser = true;
@@ -7,6 +8,7 @@
     "networkmanager"
     "libvirtd"
   ];
-  # shell = pkgs.zsh;
+  shell = pkgs.zsh;
+  packages = with pkgs; [ zsh ];
 
 }

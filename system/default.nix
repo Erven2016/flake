@@ -33,6 +33,8 @@ in
 
     nixpkgs.config.allowUnfree = current.allowUnfreePackages;
 
+    programs.zsh.enable = mkDefault true;
+
     # Minimal setup
     environment.systemPackages = with pkgs; [
       pkg-config
