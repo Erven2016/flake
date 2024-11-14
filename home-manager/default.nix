@@ -34,6 +34,7 @@ in
         (import ./devenv)
         (import ./helix)
         (import ./zsh)
+        (import ./git)
 
         # to import home.nix where located in `root/user/${username}` for specified user
         (import ../users/${username}/home.nix)
