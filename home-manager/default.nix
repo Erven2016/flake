@@ -14,9 +14,18 @@ in
     home-manager.users = lib.genAttrs current.users (
       username:
       (mkMerge [
-        (import ../users/${username}/home.nix)
+
+        ({
+          # Set stateVersion
+          home.stateVersion = current.stateVersion;
+        })
+
+        # to import home-mananger submodules
         (import ./devenv)
-        ({ home.stateVersion = current.stateVersion; })
+        (import ./helix)
+
+        # to import home.nix where located in `root/user/${username}` for specified user
+        (import ../users/${username}/home.nix)
       ])
     );
   };
