@@ -1,4 +1,3 @@
-{ current, pkgs, lib, ... }:
 {
   current,
   pkgs,
@@ -6,14 +5,10 @@
   ...
 }:
 let
-inherit (lib) mkDefault;
- in {
-  home.packages = with pkgs; [
-    unstable.zed
-  ];
   inherit (lib) mkDefault;
 in
 {
+  home.packages = with pkgs; [ unstable.zed-editor ];
 
   home.programs.zsh.enable = true;
 
@@ -22,48 +17,49 @@ in
     defaultEditor = true;
 
     settings = {
-        theme = mkDefault "github_dark_tritanopia_transparent";
-        editor = {
-          mouse = mkDefault false;
-          cursorline = mkDefault true;
-          auto-format = mkDefault false;
-          color-modes = mkDefault true;
-          default-line-ending = mkDefault "lf";
-          popup-border = mkDefault "all";
+      theme = mkDefault "github_dark_tritanopia_transparent";
+      editor = {
+        mouse = mkDefault false;
+        cursorline = mkDefault true;
+        auto-format = mkDefault false;
+        color-modes = mkDefault true;
+        default-line-ending = mkDefault "lf";
+        popup-border = mkDefault "all";
 
-          indent-guides = {
-            render = mkDefault true;
-            character = mkDefault "╎";
-            skip-levels = mkDefault 1;
-          };
-
-          lsp = {
-            enable = mkDefault true;
-            display-messages = mkDefault true;
-          };
-
-          cursor-shape = {
-            normal = mkDefault "block";
-            insert = mkDefault "bar";
-            select = mkDefault "underline";
-          };
+        indent-guides = {
+          render = mkDefault true;
+          character = mkDefault "╎";
+          skip-levels = mkDefault 1;
         };
 
-        keys.normal = {
-          space.i = mkDefault ":format";
+        lsp = {
+          enable = mkDefault true;
+          display-messages = mkDefault true;
+        };
+
+        cursor-shape = {
+          normal = mkDefault "block";
+          insert = mkDefault "bar";
+          select = mkDefault "underline";
         };
       };
 
-      languages.language = [
-        {
-          name = "nix";
-          auto-format = false;
-          formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-        }];
+      keys.normal = {
+        space.i = mkDefault ":format";
+      };
+    };
 
-      extraPackages = with pkgs; [
-        nil
-        nixfmt-rfc-style
-      ];
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = false;
+        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+      }
+    ];
+
+    extraPackages = with pkgs; [
+      nil
+      nixfmt-rfc-style
+    ];
   };
- }
+}
