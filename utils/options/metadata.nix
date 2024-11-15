@@ -59,6 +59,10 @@ in
       };
     };
 
+    sound.enable = mkEnableOption // {
+      default = true;
+    };
+
     users = mkOption {
       type = types.listOf types.str;
       description = "Users which specified to import from home-manager.";
