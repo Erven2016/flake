@@ -33,9 +33,15 @@ in
       default = tag: builtins.elem tag cfg.tags;
     };
 
-    preferDesktop = mkOption {
+    desktop = mkOption {
       type = types.nullOr types.str;
       default = null;
+    };
+
+    isDesktopEnabled = mkOption {
+      type = types.bool;
+      readOnly = true;
+      default = (cfg.desktop != null);
     };
 
     i18n = {

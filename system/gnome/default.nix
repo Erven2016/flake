@@ -8,7 +8,7 @@ let
   inherit (lib) mkIf mkMerge;
 in
 {
-  config = mkIf (current.preferDesktop == "gnome") {
+  config = mkIf (current.desktop == "gnome") {
     services.xserver = {
       enable = true;
       displayManager = {
