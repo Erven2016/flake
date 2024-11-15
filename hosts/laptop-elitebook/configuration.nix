@@ -1,6 +1,21 @@
-{ pkgs, config, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+let
+  nixos-hardware = inputs.nixos-hardware;
+in
+{
+  imports = [
+    ./hardware-configuration.nix
+
+    # nixos-hardware
+    nixos-hardware.nixosModules.common-cpu-amd
+    nixos-hardware.nixosModules.common-hidpi
+  ];
+
   config = {
     networking.networkmanager.enable = true;
     programs.proxychains = {
