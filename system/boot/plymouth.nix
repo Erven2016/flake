@@ -23,18 +23,18 @@ in
         type = types.str;
         description = "The plymouth theme which to be installed.";
         example = "rings";
-        default = "splash";
+        default = "lone";
       };
     };
   };
 
   config = {
     boot = {
-      plymouth = mkIf (cfg.plymount.enable) rec {
+      plymouth = mkIf (cfg.plymouth.enable) rec {
         enable = true;
         theme = cfg.plymouth.theme;
-        themesPackages = with pkgs; [
-          (adil1090x-plymouth-themes.override { selected_themes = [ theme ]; })
+        themePackages = with pkgs; [
+          (adi1090x-plymouth-themes.override { selected_themes = [ theme ]; })
         ];
       };
 
