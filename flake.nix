@@ -10,6 +10,9 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NURs
+    nur-erven2016.url = "github:erven2016/nur/master";
   };
 
   outputs =
