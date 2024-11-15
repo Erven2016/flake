@@ -79,5 +79,17 @@
         "/usr/share/icons" = mkRoSymBind "${aggregatedIcons}/share/icons";
         "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
       };
+
+    # boot.kernelParams = [
+    #   "video=eDP-1:2560x1600@120"
+    #   "video=HDMI-A-1:d"
+    #   "video=DP-1:d"
+    #   "video=DP-2:d"
+    #   "video=DP-3:d"
+    #   "video=DP-4:d"
+    #   "video=DP-5:d"
+    #   "video=DP-6:d"
+    #   "video=DP-7:d"
+    # ];
   };
 }
