@@ -9,6 +9,8 @@
     "libvirtd"
   ];
   shell = pkgs.zsh;
-  packages = with pkgs; [ zsh ];
+  packages = with pkgs; [
+    zsh
+  ];
 
 }
