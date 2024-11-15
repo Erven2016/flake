@@ -27,7 +27,7 @@ in
           "sudo"
           "git"
         ];
-        theme = mkDefault "mgutz";
+        theme = mkDefault "gentoo";
       };
     };
   };
