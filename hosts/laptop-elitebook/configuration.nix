@@ -18,6 +18,9 @@
       "flakes"
     ];
 
+    fonts.packages = with pkgs; [ erven2016.fonts.otf-pingfang ];
+    fonts.fontconfig.defaultFonts.sansSerif = [ "PingFang SC" ];
+
     services.flatpak.enable = true;
     xdg.portal.enable = true;
 
