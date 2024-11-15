@@ -1,7 +1,7 @@
 { lib, config, ... }@args:
 let
   inherit (lib) types mkOption mkEnableOption;
-  
+
   cfg = config;
 in
 {
@@ -98,9 +98,27 @@ in
       default = if (cfg.efiSysMountPoint != null) then "systemd-boot" else "grub";
     };
 
-    bootRollbackConfigurationLimit = mkOption {
+    bootRollbackConfigurationsLimit = mkOption {
       type = types.int;
-      default = 10;
+      default = 20;
+    };
+  };
+
+  options.component = {
+    flatpak.enable = mkEnableOption "flatpak for host";
+    kvm = {
+      enable = mkEnableOption "kvm for host";
+    };
+    docker = {
+      enable = mkEnableOption "docker for host";
+      allowUsers = mkOption {
+        type = types.listOf types.str;
+        example = [
+          "username1"
+          "erven2016"
+        ];
+        default = [ ];
+      };
     };
   };
 }
