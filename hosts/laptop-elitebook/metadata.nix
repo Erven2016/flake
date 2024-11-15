@@ -1,8 +1,5 @@
 {
-  tags = [
-    "flatpak"
-    "kvm"
-  ];
+  tags = [ "laptop" ];
   desktop = "gnome";
   users = [ "erven2016" ];
   i18n = {
