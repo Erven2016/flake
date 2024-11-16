@@ -1,6 +1,6 @@
 {
   pkgs,
-  config,
+  # config,
   inputs,
   ...
 }:
@@ -13,7 +13,6 @@ in
 
     # nixos-hardware
     nixos-hardware.nixosModules.common-cpu-amd
-    nixos-hardware.nixosModules.common-hidpi
   ];
 
   config = {
