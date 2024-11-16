@@ -12,6 +12,7 @@ in
     ./gnome
     ./fonts
     ./boot
+    ./components
   ];
 
   config = {

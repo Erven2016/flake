@@ -106,6 +106,8 @@ in
 
   options.component = {
     flatpak.enable = mkEnableOption "flatpak for host";
+  options.components = {
+    flatpak.enable = mkEnableOption "flatpak for current host";
     kvm = {
       enable = mkEnableOption "kvm for host";
     };

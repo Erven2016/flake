@@ -35,9 +35,6 @@ in
     fonts.packages = with pkgs; [ erven2016.fonts.otf-pingfang ];
     fonts.fontconfig.defaultFonts.sansSerif = [ "PingFang SC" ];
 
-    services.flatpak.enable = true;
-    xdg.portal.enable = true;
-
     networking.proxy.allProxy = "http://127.0.0.1:7890";
 
     programs.clash-verge = {
@@ -63,39 +60,6 @@ in
     services.fprintd = {
       enable = true;
     };
-
-    # 修复 Flatpak 应用不能发现系统环境中的字体
-    # todo: 按需启用对应的 system-icons
-    system.fsPackages = [ pkgs.bindfs ];
-    fileSystems =
-      let
-        mkRoSymBind = path: {
-          device = path;
-          fsType = "fuse.bindfs";
-          options = [
-            "ro"
-            "resolve-symlinks"
-            "x-gvfs-hide"
-          ];
-        };
-        aggregatedIcons = pkgs.buildEnv {
-          name = "system-icons";
-          paths = with pkgs; [
-            #libsForQt5.breeze-qt5  # for Plasma
-            gnome.gnome-themes-extra # for Gnome
-          ];
-          pathsToLink = [ "/share/icons" ];
-        };
-        aggregatedFonts = pkgs.buildEnv {
-          name = "system-fonts";
-          paths = config.fonts.packages;
-          pathsToLink = [ "/share/fonts" ];
-        };
-      in
-      {
-        "/usr/share/icons" = mkRoSymBind "${aggregatedIcons}/share/icons";
-        "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
-      };
 
     # boot.kernelParams = [
     #   "video=eDP-1:2560x1600@120"

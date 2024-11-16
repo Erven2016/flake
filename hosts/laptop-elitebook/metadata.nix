@@ -6,4 +6,8 @@
     supportedLocales = [ "zh_CN.UTF-8/UTF-8" ];
   };
   efiSysMountPoint = "/boot";
+
+  components = {
+    flatpak.enable = true;
+  };
 }
