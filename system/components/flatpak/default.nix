@@ -9,7 +9,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf (current.components.flatpak) {
+  config = mkIf (current.components.flatpak.enable) {
     services.flatpak.enable = true;
     xdg.portal.enable = true;
 
