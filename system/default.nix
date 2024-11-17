@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./gnome
+    ./sound
     ./fonts
     ./boot
     ./components
