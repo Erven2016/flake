@@ -34,7 +34,7 @@ in
     };
 
     desktop = mkOption {
-      type = types.nullOr types.str;
+      type = types.nullOr types.enum [ "gnome" ];
       default = null;
     };
 
@@ -109,7 +109,11 @@ in
       enable = mkEnableOption "automatical hibernate" // {
         default = true;
       };
-      timeAfterSuspend = mkOption { };
+      afterSeconds = mkOption {
+        type = types.str;
+        description = "Automatically hibernate after how many seconds countdown, defaultly it is 3 hours.";
+        default = "10800";
+      };
     };
   };
 
