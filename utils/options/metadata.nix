@@ -34,7 +34,10 @@ in
     };
 
     desktop = mkOption {
-      type = types.nullOr types.enum [ "gnome" ];
+      type = types.enum [
+        "gnome"
+        null
+      ];
       default = null;
     };
 
