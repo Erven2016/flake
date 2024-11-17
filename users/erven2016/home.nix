@@ -8,6 +8,9 @@ let
   inherit (lib) mkDefault;
 in
 {
+
+  imports = [ ./gnome ];
+
   home.packages = with pkgs; [
     unstable.zed-editor
     btop
