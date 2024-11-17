@@ -11,7 +11,7 @@ in
       alsa.support32Bit = mkDefault true;
       pulse.enable = mkDefault true;
 
-      jack.enable = mkDefault true;
+      jack.enable = mkDefault false;
     };
 
     # rtkit is recommanded to install with pipewire.
