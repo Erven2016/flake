@@ -30,6 +30,10 @@ in
       ];
     };
 
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-console # replaced with gnome-terminal
+    ];
+
     environment.systemPackages = mkMerge [
       (with pkgs; [
         gnome.gnome-tweaks
@@ -39,11 +43,13 @@ in
         resources
       ])
 
+      # Default extensions
       (with pkgs.gnomeExtensions; [
         appindicator
         caffeine
         auto-power-profile
         customize-ibus
+        auto-activities
       ])
     ];
 
