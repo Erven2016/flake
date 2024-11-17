@@ -13,6 +13,7 @@ in
     ./sound
     ./fonts
     ./boot
+    ./powerManagement
     ./components
   ];
 
