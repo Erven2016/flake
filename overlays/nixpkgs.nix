@@ -1,8 +1,4 @@
-{
-  current,
-  inputs,
-  ...
-}:
+{ current, inputs, ... }:
 {
   nixpkgs.overlays = [
     # nixpkgs-unstable
