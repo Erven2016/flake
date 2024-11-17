@@ -21,7 +21,8 @@ in
     };
 
     i18n.inputMethod = {
-      enabled = "ibus";
+      enable = true;
+      type = "ibus";
       ibus.engines = mkMerge [
         (mkIf (
           (builtins.elem "zh_CN.UTF-8/UTF-8" current.i18n.supportedLocales)
@@ -36,9 +37,9 @@ in
 
     environment.systemPackages = mkMerge [
       (with pkgs; [
-        gnome.gnome-tweaks
-        gnome.gnome-terminal
-        gnome.gnome-power-manager
+        gnome-tweaks
+        gnome-terminal
+        gnome-power-manager
 
         resources
       ])
@@ -54,6 +55,6 @@ in
     ];
 
     # Appindicator required
-    services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+    services.udev.packages = [ pkgs.gnome-settings-daemon ];
   };
 }

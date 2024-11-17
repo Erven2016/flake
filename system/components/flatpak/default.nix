@@ -30,7 +30,7 @@ in
           name = "system-icons";
           paths = with pkgs; [
             #libsForQt5.breeze-qt5  # for Plasma
-            gnome.gnome-themes-extra # for Gnome
+            gnome-themes-extra # for Gnome
           ];
           pathsToLink = [ "/share/icons" ];
         };
