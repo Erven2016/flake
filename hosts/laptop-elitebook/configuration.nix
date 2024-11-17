@@ -33,7 +33,11 @@ in
     ];
 
     fonts.packages = with pkgs; [ erven2016.fonts.otf-pingfang ];
-    fonts.fontconfig.defaultFonts.sansSerif = [ "PingFang SC" ];
+    fonts.fontconfig.defaultFonts.sansSerif = [
+      "PingFang SC"
+      "PingFang TC"
+      "PingFang HK"
+    ];
 
     networking.proxy.allProxy = "http://127.0.0.1:7890";
 
@@ -72,5 +76,7 @@ in
     #   "video=DP-6:d"
     #   "video=DP-7:d"
     # ];
+
+    # environment.systemPackages = with pkgs; [ ];
   };
 }
