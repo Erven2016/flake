@@ -59,7 +59,7 @@ in
       };
     };
 
-    sound.enable = mkEnableOption // {
+    sound.enable = mkEnableOption "sound" // {
       default = true;
     };
 
