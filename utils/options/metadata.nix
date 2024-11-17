@@ -137,4 +137,10 @@ in
       };
     };
   };
+
+  options.devenv = {
+    rust = {
+      enable = mkEnableOption "Rust development environment";
+    };
+  };
 }
