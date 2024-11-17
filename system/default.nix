@@ -21,11 +21,6 @@ in
     networking.hostName = current.hostname;
     system.stateVersion = current.stateVersion;
 
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-
     nix.gc = {
       automatic = mkDefault true;
       dates = mkDefault "weekly";
@@ -36,6 +31,11 @@ in
     nixpkgs.config.allowUnfree = current.allowUnfreePackages;
 
     programs.zsh.enable = mkDefault true;
+
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     # Minimal setup
     environment.systemPackages = with pkgs; [
@@ -62,6 +62,8 @@ in
       zip
       gnutar
 
+      # to enable flake and home-manager
+      # wget and git are required
       wget
       curl
       git
