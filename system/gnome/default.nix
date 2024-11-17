@@ -31,14 +31,19 @@ in
     };
 
     environment.systemPackages = mkMerge [
-      [
-        pkgs.gnome.gnome-tweaks
-        pkgs.gnome.gnome-terminal
-      ]
+      (with pkgs; [
+        gnome.gnome-tweaks
+        gnome.gnome-terminal
+        gnome.gnome-power-manager
+
+        resources
+      ])
 
       (with pkgs.gnomeExtensions; [
         appindicator
         caffeine
+        auto-power-profile
+        customize-ibus
       ])
     ];
 
