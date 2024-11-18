@@ -26,6 +26,7 @@ in
         ../home-manager
 
         ../overlays/nixpkgs.nix
+        ../overlays/gnome.nix
 
         inputs.home-manager.nixosModules.home-manager
 
