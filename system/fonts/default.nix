@@ -20,7 +20,7 @@ in
     fonts = {
       enableDefaultPackages = mkDefault true;
       fontDir.enable = mkDefault true;
-      enableGhostscriptFonts = mkDefault true;
+      enableGhostscriptFonts = mkDefault false;
 
       packages = mkMerge [
         (with pkgs; [
