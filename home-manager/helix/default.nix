@@ -78,7 +78,12 @@ in
         {
           name = "nix";
           auto-format = mkDefault false;
-          formatter.command = mkDefault "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+          formatter = {
+            command = mkDefault "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            args = mkDefault [
+              "-s"
+            ];
+          };
         }
         {
           name = "yaml";
