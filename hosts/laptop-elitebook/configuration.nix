@@ -84,5 +84,12 @@ in
       # see: https://gitlab.gnome.org/GNOME/gtk/-/issues/6890
       GSK_RENDERER = "gl";
     };
+
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-software
+      gnome-tour
+      gnome-user-docs
+      gnome-maps
+    ];
   };
 }
