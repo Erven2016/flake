@@ -21,6 +21,19 @@ in
     enable = mkEnableOption "helix editor" // {
       default = true;
     };
+
+    languages = mkOption {
+      type = types.listOf types.str;
+      default = [
+        "nix"
+        "bash"
+      ];
+    };
+
+    hasLanguage = mkOption {
+      readOnly = true;
+      default = lang: builtins.elem lang cfg.languages;
+    };
   };
 
   config = {
@@ -67,13 +80,85 @@ in
           auto-format = mkDefault false;
           formatter.command = mkDefault "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
         }
+        {
+          name = "yaml";
+          auto-format = mkDefault false;
+          formatter = {
+            command = mkDefault "yamlfmt";
+            args = mkDefault [ "-" ];
+          };
+        }
+        {
+          name = "bash";
+          auto-format = false;
+          formatter = {
+            command = "shfmt";
+            args = [
+              # The following formatting flags 
+              # closely resemble Google's shell 
+              # style defined in 
+              # https://google.github.io/styleguide/shellguide.html:
+              "-i"
+              "2"
+              "-ci"
+              "-bn"
+              "-"
+            ];
+          };
+        }
       ];
 
       extraPackages = mkMerge [
-        (with pkgs; [
-          nil
-          nixfmt-rfc-style
-        ])
+        (mkIf (cfg.hasLanguage "nix") (
+          with pkgs;
+          [
+            nil
+            nixfmt-rfc-style
+          ]
+        ))
+
+        (mkIf (cfg.hasLanguage "rust") (
+          with pkgs;
+          [
+            rustup
+          ]
+        ))
+
+        (mkIf (cfg.hasLanguage "bash") (
+          with pkgs;
+          [
+            bash-language-server
+            shfmt
+          ]
+        ))
+
+        (mkIf (cfg.hasLanguage "markdown") (
+          with pkgs;
+          [
+            marksman
+            markdown-oxide
+          ]
+        ))
+
+        (mkIf (cfg.hasLanguage "yaml") (
+          with pkgs;
+          [
+            yaml-language-server
+            yamlfmt
+          ]
+        ))
+
+        (mkIf (cfg.hasLanguage "toml") (with pkgs; [ taplo ]))
+
+        (mkIf (cfg.hasLanguage "python") (with pkgs; [ python312Packages.python-lsp-server ]))
+
+        (mkIf ((cfg.hasLanguage "json") || (cfg.hasLanguage "jsonc")) (
+          with pkgs;
+          [
+            nodePackages_latest.vscode-json-languageserver
+          ]
+        ))
+
       ];
     };
 

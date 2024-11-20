@@ -19,4 +19,12 @@ in
   home.programs.joshuto.enable = true;
   home.programs.zed-editor.enable = true;
   programs.zsh.oh-my-zsh.plugins = [ "rust" ];
+
+  home.programs.helix.languages = [
+    "json"
+    "python"
+    "toml"
+    "rust"
+    "yaml"
+  ];
 }
