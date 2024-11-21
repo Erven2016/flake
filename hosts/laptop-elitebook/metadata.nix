@@ -10,4 +10,13 @@
   components = {
     flatpak.enable = true;
   };
+
+  devenv = {
+    nodejs = {
+      enable = true;
+    };
+    rust = {
+      enable = true;
+    };
+  };
 }

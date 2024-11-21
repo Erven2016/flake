@@ -129,6 +129,10 @@ in
       enable = mkEnableOption "docker for host";
       allowUsers = mkOption {
         type = types.listOf types.str;
+        description = lib.literalExpression ''
+          Users who will be imported by home-manager,
+          so make true that user dirs are created in root/user/
+        '';
         example = [
           "username1"
           "erven2016"
@@ -141,6 +145,15 @@ in
   options.devenv = {
     rust = {
       enable = mkEnableOption "Rust development environment";
+    };
+    nodejs = {
+      enable = mkEnableOption "Nodejs development environment";
+    };
+    go = {
+      enbale = mkEnableOption "Go development environment";
+    };
+    python = {
+      enable = mkEnableOption "Python development environment";
     };
   };
 }
