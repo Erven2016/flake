@@ -2,11 +2,10 @@
   lib,
   current,
   pkgs,
-  config,
   ...
 }:
 let
-  inherit (lib) mkMerge mkIf;
+  inherit (lib) mkMerge;
 in
 {
   config = {
@@ -25,10 +24,10 @@ in
       username:
       (mkMerge [
 
-        ({
+        {
           # Set stateVersion
           home.stateVersion = current.stateVersion;
-        })
+        }
 
         # to import home-mananger submodules
         (import ./devenv)
