@@ -41,6 +41,9 @@ in
 
         terminal = {
           font_family = mkDefault "FiraCode Nerd Font Mono";
+          env = {
+            TERM = "xterm-256color";
+          };
         };
 
         auto_update = mkDefault false;
