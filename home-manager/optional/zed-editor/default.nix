@@ -34,13 +34,14 @@ in
         vim_mode = mkDefault true;
         tab_size = mkDefault 2;
 
-        ui_font_size = mkDefault 20;
+        ui_font_size = mkDefault 22;
         buffer_font_size = mkDefault 20;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";
         ui_font_family = mkDefault "BlexMono Nerd Font Mono";
 
         terminal = {
           font_family = mkDefault "FiraCode Nerd Font Mono";
+          font_size = mkDefault 18;
           env = {
             TERM = "xterm-256color";
           };
