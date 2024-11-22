@@ -20,6 +20,9 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [ "x86_64-linux" ];
+      perSystem = {
+        imports = [ ./flakeModules/devShells ];
+      };
       imports = [ ./flakeModules/nixosConfigurations.nix ];
     };
 }

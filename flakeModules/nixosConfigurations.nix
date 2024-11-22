@@ -6,6 +6,7 @@
 }:
 let
   inherit (import ../utils) evalHost;
+
   hostsDir = ../hosts;
   nixosSystem = inputs.nixpkgs.lib.nixosSystem;
 in
