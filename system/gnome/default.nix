@@ -31,14 +31,11 @@ in
       ];
     };
 
-    environment.gnome.excludePackages = with pkgs; [
-      gnome-console # replaced with gnome-terminal
-    ];
+    # environment.gnome.excludePackages = with pkgs; [ ];
 
     environment.systemPackages = mkMerge [
       (with pkgs; [
         gnome-tweaks
-        gnome-terminal
         gnome-power-manager
 
         resources
