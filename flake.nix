@@ -18,11 +18,15 @@
   outputs =
     inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ ./flakeModules/nixosConfigurations.nix ];
       debug = true;
       systems = [ "x86_64-linux" ];
       perSystem = {
         imports = [ ./flakeModules/devShells ];
       };
-      imports = [ ./flakeModules/nixosConfigurations.nix ];
+
+      flake = {
+        imports = [ ./templates ];
+      };
     };
 }
