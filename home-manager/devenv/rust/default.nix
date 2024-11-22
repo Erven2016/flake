@@ -1,6 +1,5 @@
 {
   lib,
-  current,
   pkgs,
   config,
   ...
@@ -18,10 +17,7 @@ let
 in
 {
   options.home.devenv.rust = {
-    enable = mkEnableOption "Rust development environment" // {
-      default = current.devenv.rust.enable;
-      readOnly = true;
-    };
+    enable = mkEnableOption "Rust development environment";
 
     rustToolchainPackages = mkOption {
       type = types.listOf types.package;

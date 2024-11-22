@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  current,
   ...
 }:
 let
@@ -18,10 +17,7 @@ let
 in
 {
   options.home.devenv.nodejs = {
-    enable = mkEnableOption "NodeJS" // {
-      readOnly = true;
-      default = current.devenv.nodejs.enable;
-    };
+    enable = mkEnableOption "NodeJS";
 
     # default nodejs version which will be used
     package = mkOption {

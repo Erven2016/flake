@@ -1,6 +1,5 @@
 {
   lib,
-  current,
   pkgs,
   config,
   ...
@@ -23,10 +22,7 @@ let
 in
 {
   options.home.devenv.python = {
-    enable = mkEnableOption "Python development environment" // {
-      readOnly = true;
-      default = current.devenv.python.enable;
-    };
+    enable = mkEnableOption "Python development environment";
 
     package = mkOption {
       type = types.package;

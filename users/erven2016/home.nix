@@ -30,5 +30,17 @@ in
     go = {
       enable = true;
     };
+
+    rust = {
+      enable = true;
+    };
+
+    nodejs = {
+      enable = true;
+    };
+
+    python = {
+      enable = true;
+    };
   };
 }

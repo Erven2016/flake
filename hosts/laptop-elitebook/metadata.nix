@@ -10,19 +10,4 @@
   components = {
     flatpak.enable = true;
   };
-
-  devenv = {
-    nodejs = {
-      enable = true;
-    };
-    rust = {
-      enable = true;
-    };
-    python = {
-      enable = true;
-    };
-    go = {
-      enable = true;
-    };
-  };
 }

@@ -141,25 +141,4 @@ in
       };
     };
   };
-
-  options.devenv = {
-    rust = {
-      enable = mkEnableOption "Rust development environment";
-    };
-    nodejs = {
-      enable = mkEnableOption "Nodejs development environment";
-    };
-    go = {
-      enable = mkEnableOption "Go development environment";
-      enableLatestVersion = mkEnableOption "use latest go version in nixpkgs-unstable" // {
-        default = true;
-      };
-      enableCgo = mkEnableOption "use cgo" // {
-        default = true;
-      };
-    };
-    python = {
-      enable = mkEnableOption "Python development environment";
-    };
-  };
 }
