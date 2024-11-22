@@ -18,5 +18,8 @@
     rust = {
       enable = true;
     };
+    python = {
+      enable = true;
+    };
   };
 }

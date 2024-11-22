@@ -2,5 +2,6 @@
   imports = [
     ./nodejs
     ./rust
+    ./python
   ];
 }
