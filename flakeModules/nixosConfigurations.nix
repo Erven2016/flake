@@ -26,7 +26,7 @@ in
 
       _modules = hostname: [
         ../system
-        ../home-manager
+        ../homeManager
 
         ../overlays/nixpkgs.nix
         ../overlays/gnome.nix
