@@ -25,7 +25,7 @@ in
       userSettings = {
         theme = {
           mode = "system";
-          light = "Github Light Tritanopia";
+          light = "Github Light High Contrast";
           dark = "Github Dark Tritanopia";
         };
         features = {
