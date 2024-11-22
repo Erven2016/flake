@@ -31,7 +31,7 @@ in
         features = {
           copilot = mkDefault false;
         };
-        vim_mode = mkDefault true;
+        vim_mode = mkDefault false;
         tab_size = mkDefault 2;
 
         ui_font_size = mkDefault 22;
