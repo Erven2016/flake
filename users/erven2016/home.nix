@@ -11,9 +11,7 @@ in
 
   imports = [ ./gnome ];
 
-  home.packages = with pkgs; [
-    btop
-  ];
+  home.packages = with pkgs; [ btop ];
 
   home.programs.zsh.enable = true;
   home.programs.joshuto.enable = true;
@@ -27,4 +25,10 @@ in
     "rust"
     "yaml"
   ];
+
+  home.devenv = {
+    go = {
+      enable = true;
+    };
+  };
 }

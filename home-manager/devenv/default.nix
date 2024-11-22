@@ -3,5 +3,6 @@
     ./nodejs
     ./rust
     ./python
+    ./go
   ];
 }

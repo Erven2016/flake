@@ -150,7 +150,13 @@ in
       enable = mkEnableOption "Nodejs development environment";
     };
     go = {
-      enbale = mkEnableOption "Go development environment";
+      enable = mkEnableOption "Go development environment";
+      enableLatestVersion = mkEnableOption "use latest go version in nixpkgs-unstable" // {
+        default = true;
+      };
+      enableCgo = mkEnableOption "use cgo" // {
+        default = true;
+      };
     };
     python = {
       enable = mkEnableOption "Python development environment";
