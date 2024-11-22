@@ -1,4 +1,9 @@
-{ lib, ... }@args:
+{
+  lib,
+  hostsDir,
+  hostname,
+  ...
+}@args:
 (lib.evalModules {
   modules = [
     ./options/metadata.nix

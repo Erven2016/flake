@@ -5,6 +5,7 @@
   ...
 }:
 let
+  inherit (import ../utils) evalHost;
   hostsDir = ../hosts;
   nixosSystem = inputs.nixpkgs.lib.nixosSystem;
 in
@@ -15,12 +16,14 @@ in
     hostname:
     let
       # to eval metadata for current host
-      currentHost = import ../utils/evalHost.nix { inherit lib hostsDir hostname; };
+      currentHost = evalHost { inherit lib hostsDir hostname; };
       system = currentHost.architecture;
+
       _specialArgs = hostname: {
         inherit system inputs;
         current = currentHost;
       };
+
       _modules = hostname: [
         ../system
         ../home-manager
