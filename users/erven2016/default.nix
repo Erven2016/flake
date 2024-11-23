@@ -11,6 +11,9 @@
   shell = pkgs.zsh;
   packages = with pkgs; [
     zsh
+
+    unstable.flatpak-builder
+    unstable.appstream
   ];
 
 }
