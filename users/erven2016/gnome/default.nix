@@ -7,11 +7,12 @@ in
   config = {
     home.packages = mkMerge [
       (with pkgs.gnomeExtensions; [
-        gnome-40-ui-improvements
         alphabetical-app-grid
         luminus-shell-y
         blur-my-shell
         wtmb-window-thumbnails
+        dash-to-panel
+        just-perfection
       ])
     ];
   };
