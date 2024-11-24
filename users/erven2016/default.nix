@@ -12,6 +12,8 @@
   packages = with pkgs; [
     zsh
 
+    dust # better `du`
+
     unstable.flatpak-builder
     unstable.appstream
   ];
