@@ -1,10 +1,17 @@
 # Home-Manager Submodule For Gnome
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  current,
+  ...
+}:
 let
-  inherit (lib) mkMerge;
+  inherit (lib) mkMerge mkIf;
 in
 {
-  config = {
+  imports = [ ./keybinding.nix ];
+
+  config = mkIf (current.desktop == "gnome") {
     home.packages = mkMerge [
       (with pkgs.gnomeExtensions; [
         alphabetical-app-grid
@@ -16,4 +23,6 @@ in
       ])
     ];
   };
+
+  # dconf.settings = {};
 }
