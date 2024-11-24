@@ -35,6 +35,7 @@ in
         (import ./zsh)
         (import ./git)
         (import ./optional)
+        (import ./gnome)
 
         # to import home.nix where located in `root/user/${username}` for specified user
         (import ../users/${username}/home.nix)
