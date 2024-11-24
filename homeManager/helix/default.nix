@@ -67,6 +67,25 @@ in
             insert = mkDefault "bar";
             select = mkDefault "underline";
           };
+
+          statusline = {
+            left = mkDefault [
+              "mode"
+              "spinner"
+              "file-name"
+              "read-only-indicator"
+              "file-modification-indicator"
+            ];
+            right = mkDefault [
+              "diagnostics"
+              "selections"
+              "register"
+              "file-encoding"
+              "separator"
+              "position"
+              "position-percentage"
+            ];
+          };
         };
 
         keys.normal = {
@@ -80,9 +99,7 @@ in
           auto-format = mkDefault false;
           formatter = {
             command = mkDefault "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-            args = mkDefault [
-              "-s"
-            ];
+            args = mkDefault [ "-s" ];
           };
         }
         {
@@ -95,10 +112,10 @@ in
         }
         {
           name = "bash";
-          auto-format = false;
+          auto-format = mkDefault false;
           formatter = {
-            command = "shfmt";
-            args = [
+            command = mkDefault "shfmt";
+            args = mkDefault [
               # The following formatting flags 
               # closely resemble Google's shell 
               # style defined in 
@@ -122,12 +139,7 @@ in
           ]
         ))
 
-        (mkIf (cfg.hasLanguage "rust") (
-          with pkgs;
-          [
-            rustup
-          ]
-        ))
+        (mkIf (cfg.hasLanguage "rust") (with pkgs; [ rustup ]))
 
         (mkIf (cfg.hasLanguage "bash") (
           with pkgs;
@@ -158,10 +170,7 @@ in
         (mkIf (cfg.hasLanguage "python") (with pkgs; [ python312Packages.python-lsp-server ]))
 
         (mkIf ((cfg.hasLanguage "json") || (cfg.hasLanguage "jsonc")) (
-          with pkgs;
-          [
-            nodePackages_latest.vscode-json-languageserver
-          ]
+          with pkgs; [ nodePackages_latest.vscode-json-languageserver ]
         ))
 
       ];

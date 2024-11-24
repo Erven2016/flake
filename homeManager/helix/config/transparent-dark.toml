@@ -1,2 +1,7 @@
 inherits = "github_dark_tritanopia"
+# Color platte overrides
 "ui.background" = {}
+"ui.statusline" = { bg = "" }
+"ui.statusline.normal" = { bg = "" }
+"ui.statusline.insert" = { bg = "" }
+"ui.statusline.select" = { bg = "" }
