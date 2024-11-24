@@ -94,6 +94,9 @@ in
       };
 
       languages.language = [
+        # @@@
+        # nix
+        # @@@
         {
           name = "nix";
           auto-format = mkDefault false;
@@ -102,6 +105,9 @@ in
             args = mkDefault [ "-s" ];
           };
         }
+        # @@@@
+        # yaml
+        # @@@@
         {
           name = "yaml";
           auto-format = mkDefault false;
@@ -110,6 +116,9 @@ in
             args = mkDefault [ "-" ];
           };
         }
+        # @@@@
+        # bash
+        # @@@@
         {
           name = "bash";
           auto-format = mkDefault false;
@@ -130,48 +139,38 @@ in
         }
       ];
 
+      # Installing LSPs or Formatters of some languages for Helix
       extraPackages = mkMerge [
-        (mkIf (cfg.hasLanguage "nix") (
-          with pkgs;
-          [
-            nil
-            nixfmt-rfc-style
-          ]
-        ))
+        # Skipping list:
+        # Rust: rust-analyzer is installed in home.devenv.rust;
 
-        (mkIf (cfg.hasLanguage "rust") (with pkgs; [ rustup ]))
+        # Essential LSP/Formatters
+        (with pkgs; [
+          # nix
+          nil
+          nixfmt-rfc-style
 
-        (mkIf (cfg.hasLanguage "bash") (
-          with pkgs;
-          [
-            bash-language-server
-            shfmt
-          ]
-        ))
+          # bash
+          bash-language-server
+          shfmt
 
-        (mkIf (cfg.hasLanguage "markdown") (
-          with pkgs;
-          [
-            marksman
-            markdown-oxide
-          ]
-        ))
+          # markdown
+          marksman
+          markdown-oxide
 
-        (mkIf (cfg.hasLanguage "yaml") (
-          with pkgs;
-          [
-            yaml-language-server
-            yamlfmt
-          ]
-        ))
+          # yaml
+          yaml-language-server
+          yamlfmt
 
-        (mkIf (cfg.hasLanguage "toml") (with pkgs; [ taplo ]))
+          # toml
+          taplo
 
-        (mkIf (cfg.hasLanguage "python") (with pkgs; [ python312Packages.python-lsp-server ]))
+          # json/jsonc
+          nodePackages_latest.vscode-json-languageserver
+        ])
 
-        (mkIf ((cfg.hasLanguage "json") || (cfg.hasLanguage "jsonc")) (
-          with pkgs; [ nodePackages_latest.vscode-json-languageserver ]
-        ))
+        # Python
+        (mkIf (config.home.devenv.python.enable) (with pkgs; [ python312Packages.python-lsp-server ]))
 
       ];
     };

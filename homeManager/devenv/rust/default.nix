@@ -19,12 +19,24 @@ in
   options.home.devenv.rust = {
     enable = mkEnableOption "Rust development environment";
 
-    rustToolchainPackages = mkOption {
-      type = types.listOf types.package;
-      default = [ pkgs.rustup ];
+    installBy = mkOption {
+      type = types.enum [ "nixpkgs" ];
+      default = "nixpkgs";
     };
+
   };
 
-  config = mkIf cfg.enable { home.packages = mkMerge [ (cfg.rustToolchainPackages) ]; };
+  config = mkIf cfg.enable {
+    home.packages = mkMerge [
+      (mkIf (cfg.installBy == "nixpkgs") (
+        with pkgs;
+        [
+          unstable.cargo
+          unstable.rustc
+          unstable.rust-analyzer
+        ]
+      ))
+    ];
+  };
 
 }
