@@ -9,5 +9,9 @@
 
   components = {
     flatpak.enable = true;
+    kvm = {
+      enable = true;
+      allowUsers = [ "erven2016" ];
+    };
   };
 }

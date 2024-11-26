@@ -6,7 +6,6 @@
     "docker"
     "wheel"
     "networkmanager"
-    "libvirtd"
   ];
   shell = pkgs.zsh;
   packages = with pkgs; [
