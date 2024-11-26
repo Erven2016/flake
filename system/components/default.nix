@@ -1,1 +1,6 @@
-{ imports = [ ./flatpak ]; }
+{
+  imports = [
+    ./flatpak
+    ./kvm
+  ];
+}

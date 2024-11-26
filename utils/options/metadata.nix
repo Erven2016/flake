@@ -124,6 +124,13 @@ in
     flatpak.enable = mkEnableOption "flatpak for current host";
     kvm = {
       enable = mkEnableOption "kvm for host";
+      allowUsers = mkOption {
+        type = types.listOf types.str;
+        description = lib.literalExpression ''
+          Users who allowed to manage kvm.
+        '';
+        default = [ ];
+      };
     };
     docker = {
       enable = mkEnableOption "docker for host";

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkMerge;
+  inherit (lib) mkMerge mkIf;
 in
 {
   config = {
@@ -16,8 +16,15 @@ in
     };
 
     users.users = lib.genAttrs current.users (
-      username: mkMerge [ (import ../users/${username} { inherit lib pkgs; }) ]
-
+      username:
+      mkMerge [
+        (import ../users/${username} { inherit lib pkgs; })
+        ({
+          extraGroups = mkMerge [
+            (mkIf (builtins.elem username current.components.kvm.allowUsers) [ "libvirtd" ])
+          ];
+        })
+      ]
     );
 
     home-manager.users = lib.genAttrs current.users (
@@ -38,6 +45,19 @@ in
 
         # to import home.nix where located in `root/user/${username}` for specified user
         (import ../users/${username}/home.nix)
+
+        # KVM dconf settings
+        (mkIf
+          ((builtins.elem username current.components.kvm.allowUsers) && (current.components.kvm.enable))
+          {
+            dconf.settings = {
+              "org/virt-manager/virt-manager/connections" = {
+                autoconnect = [ "qemu:///system" ];
+                uris = [ "qemu:///system" ];
+              };
+            };
+          }
+        )
       ])
     );
   };
