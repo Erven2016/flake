@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib)
     mkEnableOption
@@ -35,5 +40,11 @@ in
       enable = mkDefault true;
       enableZshIntegration = mkDefault true;
     };
+
+    home.packages = with pkgs; [
+      zsh-autosuggestions
+      zsh-autocomplete
+      zsh-autopair
+    ];
   };
 }
