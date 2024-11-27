@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkForce mkDefault;
+  inherit (lib)
+    mkIf
+    # mkForce
+    mkDefault
+    mkMerge
+    ;
 in
 {
   imports = [
@@ -37,6 +42,8 @@ in
       "nix-command"
       "flakes"
     ];
+
+    services.xserver.excludePackages = mkMerge [ (mkIf (current.desktop != null) [ pkgs.xterm ]) ];
 
     # Minimal setup
     environment.systemPackages = with pkgs; [
@@ -75,7 +82,6 @@ in
 
       helix
       nil
-
     ];
   };
 }
