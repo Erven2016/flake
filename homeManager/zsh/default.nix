@@ -24,7 +24,10 @@ in
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = mkForce true;
-      autosuggestion.enable = mkDefault true;
+      autosuggestion = {
+        enable = mkDefault true;
+        strategy = mkDefault [ "completion" ];
+      };
 
       oh-my-zsh = {
         enable = mkDefault true;
