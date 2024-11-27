@@ -11,7 +11,7 @@
 
   imports = [ ./gnome ];
 
-  home.packages = with pkgs; [ btop ];
+  # home.packages = with pkgs; [ ];
 
   home.programs.zsh.enable = true;
   home.programs.joshuto.enable = true;

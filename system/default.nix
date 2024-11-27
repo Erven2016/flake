@@ -48,7 +48,7 @@ in
 
       screen
 
-      htop
+      btop
       iotop
       iftop
       powertop
