@@ -90,6 +90,7 @@ in
       gnome-tour
       gnome-user-docs
       gnome-maps
+      gnome-music # replaced with gapless
     ];
   };
 }
