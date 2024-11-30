@@ -107,6 +107,10 @@ in
     };
   };
 
+  options.boot = {
+    enableSecureBoot = mkEnableOption "secure boot by lanzaboote";
+  };
+
   options.powerManagement = {
     hibernate = {
       enable = mkEnableOption "automatical hibernate" // {
