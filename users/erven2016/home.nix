@@ -35,4 +35,11 @@
       enable = true;
     };
   };
+
+  programs.git.extraConfig = {
+    user = {
+      email = "leiguihua2016@gmail.com";
+      name = "erven2016";
+    };
+  };
 }
