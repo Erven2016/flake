@@ -15,11 +15,10 @@ in
     home.packages = mkMerge [
       (with pkgs.gnomeExtensions; [
         alphabetical-app-grid
-        luminus-shell-y
-        blur-my-shell
+        dock-from-dash
         wtmb-window-thumbnails
-        dash-to-panel
         just-perfection
+        net-speed-simplified
       ])
     ];
   };
