@@ -1,6 +1,6 @@
 {
   # current,
-  # pkgs,
+  pkgs,
   # lib,
   ...
 }:
@@ -19,8 +19,6 @@
   programs.zsh.oh-my-zsh.plugins = [ "rust" ];
 
   home.devenv = {
-    enable = true;
-
     go = {
       enable = true;
     };
