@@ -147,5 +147,20 @@ in
         default = [ ];
       };
     };
+    devenv = {
+      enable = mkEnableOption "devenv for development";
+      isAllowForUser = {
+        type = types.bool;
+        readOnly = true;
+        default = user: builtins.elem user cfg.nix.allowUsers;
+      };
+    };
+  };
+
+  options.nix = {
+    allowUsers = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+    };
   };
 }

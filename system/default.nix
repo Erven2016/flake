@@ -11,6 +11,8 @@ let
     mkDefault
     mkMerge
     ;
+
+  nixAllowedUsers = builtins.toString current.nix.allowUsers;
 in
 {
   imports = [
@@ -27,12 +29,18 @@ in
     networking.hostName = current.hostname;
     system.stateVersion = current.stateVersion;
 
-    nix.gc = {
-      automatic = mkDefault true;
-      dates = mkDefault "weekly";
-      options = mkDefault "--delete-older-than 60d";
+    nix = {
+      extraOptions = ''
+        trusted-users = root ${nixAllowedUsers}
+      '';
+
+      gc = {
+        automatic = mkDefault true;
+        dates = mkDefault "weekly";
+        options = mkDefault "--delete-older-than 60d";
+      };
+      settings.auto-optimise-store = mkDefault true;
     };
-    nix.settings.auto-optimise-store = mkDefault true;
 
     nixpkgs.config.allowUnfree = current.allowUnfreePackages;
 
