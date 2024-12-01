@@ -7,6 +7,10 @@
   };
   efiSysMountPoint = "/boot";
 
+  boot = {
+    enableSecureBoot = true;
+  };
+
   components = {
     flatpak.enable = true;
     kvm = {
