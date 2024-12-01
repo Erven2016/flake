@@ -16,7 +16,10 @@ let
 in
 {
 
-  # imports = [ ./plymouth.nix ];
+  imports = [
+    # ./plymouth.nix
+    ./secure-boot.nix
+  ];
 
   config = {
     boot.loader = {
