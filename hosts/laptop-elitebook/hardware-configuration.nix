@@ -24,6 +24,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  boot.bootspec.enable = true;
+  boot.initrd.systemd.enable = true;
+
   boot.initrd.luks.devices.root = {
     device = "/dev/disk/by-uuid/31f3dec8-d7b0-45c2-8980-92e6cf576eff";
     preLVM = true;
