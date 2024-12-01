@@ -65,18 +65,6 @@ in
       enable = true;
     };
 
-    # boot.kernelParams = [
-    #   "video=eDP-1:2560x1600@120"
-    #   "video=HDMI-A-1:d"
-    #   "video=DP-1:d"
-    #   "video=DP-2:d"
-    #   "video=DP-3:d"
-    #   "video=DP-4:d"
-    #   "video=DP-5:d"
-    #   "video=DP-6:d"
-    #   "video=DP-7:d"
-    # ];
-
     # environment.systemPackages = with pkgs; [ ];
 
     environment.sessionVariables = {
