@@ -22,7 +22,7 @@ in
     # default nodejs version which will be used
     package = mkOption {
       type = types.package;
-      default = pkgs.nodejs_23;
+      default = pkgs.nodejs_20;
     };
 
   };
