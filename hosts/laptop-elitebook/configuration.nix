@@ -79,11 +79,13 @@ in
     };
 
     environment.gnome.excludePackages = with pkgs; [
-      gnome-software
+      gnome-software # using warehouse instead
+      gnome-weather
       gnome-tour
       gnome-user-docs
       gnome-maps
       gnome-music # replaced with gapless
+      gnome-text-editor # replaced with helix
     ];
   };
 }
