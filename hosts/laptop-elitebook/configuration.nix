@@ -32,7 +32,12 @@ in
       "flakes"
     ];
 
-    fonts.packages = with pkgs; [ erven2016.fonts.otf-pingfang ];
+    fonts.packages = with pkgs; [
+      erven2016.fonts.otf-pingfang
+      lxgw-wenkai-tc
+      lxgw-wenkai-screen
+      lxgw-wenkai
+    ];
     fonts.fontconfig.defaultFonts.sansSerif = [
       "PingFang SC"
       "PingFang TC"
