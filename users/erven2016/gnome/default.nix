@@ -18,7 +18,6 @@ in
         dock-from-dash
         wtmb-window-thumbnails
         just-perfection
-        net-speed-simplified
       ])
     ];
   };
