@@ -90,6 +90,9 @@ in
 
       helix
       nil
+
+      #  age encryption tool
+      age
     ];
   };
 }
