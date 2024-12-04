@@ -49,7 +49,7 @@ in
     programs.clash-verge = {
       enable = true;
       autoStart = true;
-      package = pkgs.clash-verge-rev;
+      package = pkgs.unstable.clash-verge-rev;
     };
 
     hardware.graphics = {
