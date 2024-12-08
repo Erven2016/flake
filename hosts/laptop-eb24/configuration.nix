@@ -62,8 +62,6 @@ in
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
 
-    # hardware.steam-hardware.enable = true;
-
     # to enable fingerprint sensor
     services.fwupd.enable = true;
     services.fprintd = {
@@ -86,6 +84,13 @@ in
       gnome-maps
       gnome-music # replaced with gapless
       gnome-text-editor # replaced with helix
+    ];
+
+    programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = with pkgs; [
+      # Add any missing dynamic libraries for unpackaged programs
+      # here, NOT in environment.systemPackages
+      openssl
     ];
   };
 }
