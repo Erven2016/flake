@@ -18,23 +18,23 @@
   home.programs.zed-editor.enable = true;
   programs.zsh.oh-my-zsh.plugins = [ "rust" ];
 
-  home.devenv = {
-    go = {
-      enable = true;
-    };
+  # home.devenv = {
+  #   go = {
+  #     enable = true;
+  #   };
 
-    rust = {
-      enable = true;
-    };
+  #   rust = {
+  #     enable = true;
+  #   };
 
-    nodejs = {
-      enable = true;
-    };
+  #   nodejs = {
+  #     enable = true;
+  #   };
 
-    python = {
-      enable = true;
-    };
-  };
+  #   python = {
+  #     enable = true;
+  #   };
+  # };
 
   programs.git.extraConfig = {
     user = {
