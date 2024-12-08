@@ -37,6 +37,11 @@ in
         ];
         theme = mkDefault "gentoo";
       };
+
+      shellAliases = {
+        "ll" = "lsd -lh";
+        "la" = "lsd -lah";
+      };
     };
 
     programs.fzf = {
@@ -48,6 +53,8 @@ in
       zsh-autosuggestions
       zsh-autocomplete
       zsh-autopair
+
+      lsd
     ];
   };
 }
