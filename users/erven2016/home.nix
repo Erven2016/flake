@@ -19,24 +19,6 @@
   programs.zsh.oh-my-zsh.plugins = [ "rust" ];
   home.programs.direnv.enable = true;
 
-  # home.devenv = {
-  #   go = {
-  #     enable = true;
-  #   };
-
-  #   rust = {
-  #     enable = true;
-  #   };
-
-  #   nodejs = {
-  #     enable = true;
-  #   };
-
-  #   python = {
-  #     enable = true;
-  #   };
-  # };
-
   programs.git.extraConfig = {
     user = {
       email = "leiguihua2016@gmail.com";
