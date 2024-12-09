@@ -11,9 +11,7 @@ in
   config = {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.extraSpecialArgs = {
-      inherit current;
-    };
+    home-manager.extraSpecialArgs = { inherit current; };
 
     users.users = lib.genAttrs current.users (
       username:
@@ -37,8 +35,8 @@ in
         }
 
         # to import home-mananger submodules
-        (import ./devenv)
         (import ./helix)
+        (import ./direnv)
         (import ./zsh)
         (import ./git)
         (import ./optional)
