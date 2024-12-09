@@ -31,17 +31,17 @@ in
         features = {
           copilot = mkDefault false;
         };
-        vim_mode = mkDefault false;
+        vim_mode = mkDefault true;
         tab_size = mkDefault 2;
 
-        ui_font_size = mkDefault 22;
+        ui_font_size = mkDefault 20;
         buffer_font_size = mkDefault 20;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";
         ui_font_family = mkDefault "BlexMono Nerd Font Mono";
 
         terminal = {
           font_family = mkDefault "FiraCode Nerd Font Mono";
-          font_size = mkDefault 18;
+          font_size = mkDefault 16;
           env = {
             TERM = "xterm-256color";
           };
@@ -59,6 +59,9 @@ in
         };
 
         proxy = mkDefault "http://localhost:7890";
+
+        # direnv
+        load_direnv = "shell_hook";
 
         languages = {
           "Nix" = {
