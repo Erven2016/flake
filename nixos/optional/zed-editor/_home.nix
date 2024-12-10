@@ -1,5 +1,4 @@
-# Ref:
-# https://github.com/nix-community/home-manager/blob/master/modules/programs/zed-editor.nix
+# Avaliable Options: https://github.com/nix-community/home-manager/blob/master/modules/programs/zed-editor.nix
 {
   lib,
   pkgs,
