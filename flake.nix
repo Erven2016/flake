@@ -26,9 +26,9 @@
       imports = [ ./flakeModules/nixosConfigurations.nix ];
       debug = true;
       systems = [ "x86_64-linux" ];
-      perSystem = {
-        imports = [ ./flakeModules/devShells ];
-      };
+      # perSystem = {
+      #   imports = [ ];
+      # };
 
       flake = {
         imports = [ ./templates ];

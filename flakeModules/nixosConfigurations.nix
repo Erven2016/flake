@@ -26,9 +26,7 @@ in
       };
 
       _modules = hostname: [
-        ../system
-        ../homeManager
-        ../nixpkgs
+        ../nixos
 
         inputs.home-manager.nixosModules.home-manager
 
