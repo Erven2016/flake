@@ -30,6 +30,7 @@ in
           ];
         })
         ({
+          isNormalUser = true;
 
           shell = mkDefault pkgs.bash; # set default shell
           ignoreShellProgramCheck = true;
@@ -42,7 +43,6 @@ in
     home-manager.users = lib.genAttrs current.users (
       username:
       (mkMerge [
-
         {
           # Set stateVersion
           home.stateVersion = current.stateVersion;
@@ -54,7 +54,6 @@ in
 
         # import home.nix where located in `root/user/${username}` for specified user
         (import ../users/${username}/home.nix)
-
       ])
     );
   };
