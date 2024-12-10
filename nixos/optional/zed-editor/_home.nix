@@ -58,6 +58,7 @@ in
         auto_update = mkDefault false;
 
         confirm_quit = mkDefault true;
+        restore_on_startup = "none";
 
         tabs = {
           close_position = mkDefault "right";
