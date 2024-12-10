@@ -7,5 +7,6 @@
     ./helix/_home.nix
     ./direnv/_home.nix
     ./zsh/_home.nix
+    ./fish/_home.nix
   ];
 }

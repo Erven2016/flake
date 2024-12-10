@@ -31,7 +31,6 @@ in
     };
 
     nixpkgs.config.allowUnfree = current.allowUnfreePackages;
-    programs.zsh.enable = mkDefault true;
 
     nix.settings.experimental-features = [
       "nix-command"

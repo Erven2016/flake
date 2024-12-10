@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  users,
   ...
 }:
 let
@@ -12,18 +13,24 @@ let
     mkDefault
     ;
 
+  # load current shell from user configuration
+  shell = users."${config.home.username}".shell;
+
   cfg = config.home.programs.zsh;
 in
 {
   options.home.programs.zsh = {
-    enable = mkEnableOption "zsh in home manager" // {
-      default = true;
+    enable = mkEnableOption "zsh shell configuration in home-manager" // {
+      default = if (shell.pname == "zsh") then true else false;
+      readOnly = true;
     };
   };
 
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = mkForce true;
+      package = shell;
+
       autosuggestion = {
         enable = mkDefault true;
         strategy = mkDefault [ "completion" ];
@@ -37,11 +44,6 @@ in
         ];
         theme = mkDefault "gentoo";
       };
-
-      shellAliases = {
-        "ll" = "lsd -lh";
-        "la" = "lsd -lah";
-      };
     };
 
     programs.fzf = {
@@ -53,8 +55,6 @@ in
       zsh-autosuggestions
       zsh-autocomplete
       zsh-autopair
-
-      lsd
     ];
   };
 }

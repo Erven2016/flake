@@ -13,7 +13,6 @@
 
   # home.packages = with pkgs; [ ];
 
-  home.programs.zsh.enable = true;
   home.programs.joshuto.enable = true;
   # home.programs.zed-editor.enable = true;
   programs.zsh.oh-my-zsh.plugins = [ "rust" ];

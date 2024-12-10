@@ -1,18 +1,15 @@
 { pkgs, ... }:
 {
 
-  isNormalUser = true;
   extraGroups = [
     "docker"
     "wheel"
     "networkmanager"
   ];
-  shell = pkgs.zsh;
+  shell = pkgs.fish;
+
   packages = with pkgs; [
-    zsh
-
     dust # better `du`
-
     unstable.flatpak-builder
     unstable.appstream
   ];

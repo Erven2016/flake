@@ -21,12 +21,19 @@ in
     # instantiate users
     users.users = lib.genAttrs current.users (
       username:
+      { config, ... }:
       mkMerge [
         (import ../users/${username} { inherit lib pkgs; })
         ({
           extraGroups = mkMerge [
             (mkIf (builtins.elem username current.components.kvm.allowUsers) [ "libvirtd" ])
           ];
+        })
+        ({
+
+          shell = mkDefault pkgs.bash; # set default shell
+          ignoreShellProgramCheck = true;
+          packages = [ config.shell ];
         })
       ]
     );
