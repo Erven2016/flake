@@ -27,9 +27,11 @@ in
           light = "Github Light High Contrast";
           dark = "Github Dark Tritanopia";
         };
+
         features = {
           copilot = mkDefault false;
         };
+
         vim_mode = mkDefault true;
         tab_size = mkDefault 2;
 
@@ -45,6 +47,13 @@ in
             TERM = "xterm-256color";
           };
         };
+
+        node = {
+          path = lib.getExe pkgs.nodejs;
+          npm_path = lib.getExe' pkgs.nodejs "npm";
+        };
+
+        hour_format = "hour24";
 
         auto_update = mkDefault false;
 
@@ -63,7 +72,9 @@ in
         load_direnv = "shell_hook";
 
         languages = {
+          # Nix language
           "Nix" = {
+            tab_size = 2;
             "formatter" = {
               "external" = {
                 command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
@@ -71,12 +82,50 @@ in
               };
             };
           };
+          # Rust language
+          "Rust" = {
+            tab_size = 4;
+            hard_tabs = false;
+          };
         };
-
       };
 
-      extensions = [ ];
+      # List of extensions
+      # https://github.com/zed-industries/extensions/tree/main/extensions
+      extensions = [
+        "github-theme"
+        "nix"
+        "env"
+      ];
 
+      userKeymaps = [
+        # In normal & visual mode
+        {
+          context = "Editor && (vim_mode == normal || vim_mode == visual)";
+          bindings = {
+            # Helix like keymappings
+            "g e" = "vim::EndOfDocument";
+            "g h" = "vim::StartOfLine";
+            "g l" = "vim::EndOfLine";
+          };
+        }
+
+        # In normal mode
+        {
+          context = "Editor && vim_mode == normal";
+          bindings = {
+            # Helix like keymappings
+            "space f" = "file_finder::Toggle";
+
+            # format buffer
+            "space i" = "editor::Format";
+            # global search
+            "space /" = "workspace::NewSearch";
+            # go to line
+            "space g" = "go_to_line::Toggle";
+          };
+        }
+      ];
     };
 
     home.packages = with pkgs; [
