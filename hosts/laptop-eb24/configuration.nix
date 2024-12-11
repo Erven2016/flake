@@ -63,10 +63,10 @@ in
     };
 
     # to enable fingerprint sensor
-    services.fwupd.enable = true;
-    services.fprintd = {
-      enable = true;
-    };
+    # services.fwupd.enable = true;
+    # services.fprintd = {
+    #   enable = true;
+    # };
 
     # environment.systemPackages = with pkgs; [ ];
 
