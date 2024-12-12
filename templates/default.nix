@@ -1,8 +1,8 @@
 {
   templates = {
-    test = {
-      path = ./test;
-      description = "A flake template for testing.";
+    default = {
+      path = ./default;
+      description = "A default flake template";
     };
   };
 }
