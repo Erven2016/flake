@@ -115,6 +115,7 @@ in
           context = "Editor && (vim_mode == normal || vim_mode == visual)";
           bindings = {
             # Helix-like keymappings
+            "g g" = "vim::StartOfDocument";
             "g e" = "vim::EndOfDocument";
             "g h" = "vim::StartOfLine";
             "g l" = "vim::EndOfLine";
