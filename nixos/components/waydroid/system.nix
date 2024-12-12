@@ -4,7 +4,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf current.components.waydorid.enable {
+  config = mkIf current.components.waydroid.enable {
     # enable waydroid
     virtualisation.waydroid.enable = true;
   };
