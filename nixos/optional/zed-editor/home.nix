@@ -24,8 +24,8 @@ in
       userSettings = {
         theme = {
           mode = "system";
-          light = "Github Light High Contrast";
-          dark = "Github Dark Tritanopia";
+          light = "Catppuccin Latte";
+          dark = "Catppuccin Macchiato";
         };
 
         features = {
@@ -36,13 +36,13 @@ in
         tab_size = mkDefault 2;
 
         ui_font_size = mkDefault 20;
-        buffer_font_size = mkDefault 20;
+        buffer_font_size = mkDefault 18;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";
-        ui_font_family = mkDefault "BlexMono Nerd Font Mono";
+        ui_font_family = mkDefault "Zed Plex Sans";
 
         terminal = {
           font_family = mkDefault "FiraCode Nerd Font Mono";
-          font_size = mkDefault 16;
+          font_size = mkDefault 18;
           env = {
             TERM = "xterm-256color";
           };

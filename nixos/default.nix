@@ -49,7 +49,7 @@ in
         }
 
         # import home-mananger submodules
-        (import ./optional/_home.nix)
+        (import ./optional/home.nix)
         (import ./components/_home.nix)
 
         # import home.nix where located in `root/user/${username}` for specified user
