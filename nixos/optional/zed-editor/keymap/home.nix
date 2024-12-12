@@ -1,13 +1,14 @@
-{ lib, options, ... }:
+{ lib, config, ... }:
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = options.home.programs.zed-editor;
+  cfg = config.home.programs.zed-editor;
 in
 {
   options.home.programs.zed-editor = {
     enableHelixKeymap = mkEnableOption "helix-like keymappings for zed-editor";
   };
+
   config = mkIf cfg.enableHelixKeymap {
     programs.zed-editor.userKeymaps = [
       # In normal & visual mode
