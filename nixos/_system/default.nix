@@ -74,7 +74,6 @@ in
       nixos-icons
 
       helix
-      nil
 
       #  age encryption tool
       age
