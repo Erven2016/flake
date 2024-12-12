@@ -69,7 +69,7 @@ in
 
         proxy = mkDefault "http://localhost:7890";
 
-        # direnv
+        # direnv integration
         load_direnv = "shell_hook";
 
         languages = {
@@ -82,6 +82,10 @@ in
                 arguments = [ "-s" ];
               };
             };
+            "language_servers" = [
+              "nixd"
+              "!nil" # disable nil
+            ];
           };
           # Rust language
           "Rust" = {
@@ -94,7 +98,7 @@ in
       # List of extensions
       # https://github.com/zed-industries/extensions/tree/main/extensions
       extensions = [
-        "github-theme"
+        "catppuccin"
         "nix"
         "env"
       ];
@@ -108,6 +112,7 @@ in
             "g e" = "vim::EndOfDocument";
             "g h" = "vim::StartOfLine";
             "g l" = "vim::EndOfLine";
+            "space c" = "vim::ToggleComments";
           };
         }
 
