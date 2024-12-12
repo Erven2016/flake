@@ -37,8 +37,6 @@ in
       (with pkgs; [
         gnome-tweaks
         gnome-power-manager
-
-        resources
       ])
 
       # Default extensions
