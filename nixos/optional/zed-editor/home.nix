@@ -11,7 +11,9 @@ let
     mkIf
     mkDefault
     mkForce
+    mkBefore
     ;
+
   cfg = config.home.programs.zed-editor;
 in
 {
@@ -37,22 +39,33 @@ in
           copilot = mkDefault false;
         };
 
+        assistant = {
+          enable = mkDefault false;
+          button = mkDefault false;
+        };
+
         vim_mode = mkDefault true;
         tab_size = mkDefault 2;
 
+        # Fonts Options
         ui_font_size = mkDefault 20;
         buffer_font_size = mkDefault 20;
+        ui_font_weight = mkDefault 500;
+        buffer_font_weight = mkDefault 500;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";
         ui_font_family = mkDefault "Zed Plex Sans";
+        terminal.font_familly = mkDefault "FiraCode Nerd Font Mono";
+        terminal.font_size = mkDefault 18;
 
+        # Terminal Options
         terminal = {
-          font_family = mkDefault "FiraCode Nerd Font Mono";
-          font_size = mkDefault 18;
           env = {
             # fix: can't use deleting key in terminal
             TERM = mkForce "xterm-256color";
           };
         };
+
+        wrap_guides = [ 80 ];
 
         node = {
           path = lib.getExe pkgs.nodejs;
@@ -78,6 +91,7 @@ in
           file_icons = mkDefault true;
           git_status = mkDefault true;
           activate_on_close = mkDefault "history";
+          always_show_close_button = mkDefault true;
         };
 
         proxy = mkDefault "http://localhost:7890";
@@ -108,12 +122,12 @@ in
       # List of extensions
       # https://github.com/zed-industries/extensions/tree/main/extensions
       extensions = mkDefault [
-        "catppuccin"
-        "nix"
+        "catppuccin" # Theme
+        "nix" # nix language support
         "env"
       ];
 
-      userKeymaps = mkDefault [
+      userKeymaps = mkBefore [
         # In normal & visual mode
         {
           context = "Editor && (vim_mode == normal || vim_mode == visual)";
@@ -125,6 +139,16 @@ in
             "g l" = "vim::EndOfLine";
             "space c" = "vim::ToggleComments";
             "U" = "vim::Redo";
+
+            # Custom keymappings
+            "ctrl-j" = [
+              "workspace::SendKeystrokes"
+              "down down down down"
+            ];
+            "ctrl-k" = [
+              "workspace::SendKeystrokes"
+              "up up up up"
+            ];
           };
         }
 
@@ -141,6 +165,11 @@ in
             "space /" = "workspace::NewSearch";
             # go to line
             "space g" = "go_to_line::Toggle";
+          };
+        }
+        {
+          bindings = {
+            "alt-z" = "workspace::ToggleZoom";
           };
         }
       ];
