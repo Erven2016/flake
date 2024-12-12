@@ -41,13 +41,13 @@ in
         tab_size = mkDefault 2;
 
         ui_font_size = mkDefault 20;
-        buffer_font_size = mkDefault 18;
+        buffer_font_size = mkDefault 20;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";
         ui_font_family = mkDefault "Zed Plex Sans";
 
         terminal = {
           font_family = mkDefault "FiraCode Nerd Font Mono";
-          font_size = mkDefault 16;
+          font_size = mkDefault 18;
           env = {
             # fix: can't use deleting key in terminal
             TERM = mkForce "xterm-256color";
@@ -64,7 +64,14 @@ in
         auto_update = mkDefault false;
 
         confirm_quit = mkDefault true;
+
+        # open a history project can not activate direnv
+        # To open a history project can use keymap `Ctrl`-`Alt`-`o`
+        # , and direnv will be activate
         restore_on_startup = mkDefault "none";
+
+        # direnv integration
+        load_direnv = mkDefault "shell_hook";
 
         tabs = {
           close_position = mkDefault "right";
@@ -74,9 +81,6 @@ in
         };
 
         proxy = mkDefault "http://localhost:7890";
-
-        # direnv integration
-        load_direnv = mkDefault "shell_hook";
 
         languages = {
           # Nix language
