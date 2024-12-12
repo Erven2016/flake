@@ -125,6 +125,7 @@ in
   };
 
   options.components = {
+    waydroid.enable = mkEnableOption "waydroid";
     flatpak.enable = mkEnableOption "flatpak for current host";
     kvm = {
       enable = mkEnableOption "kvm for host";
