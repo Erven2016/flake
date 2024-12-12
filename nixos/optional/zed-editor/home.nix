@@ -49,7 +49,7 @@ in
         tab_size = mkDefault 2;
 
         # Fonts Options
-        ui_font_size = mkDefault 20;
+        ui_font_size = mkDefault 22;
         buffer_font_size = mkDefault 20;
         ui_font_weight = mkDefault 500;
         buffer_font_weight = mkDefault 500;
