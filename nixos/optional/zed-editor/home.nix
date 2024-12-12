@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf mkDefault;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkDefault
+    mkForce
+    ;
   cfg = config.home.programs.zed-editor;
 in
 {
@@ -18,14 +23,14 @@ in
   };
   config = {
     programs.zed-editor = mkIf cfg.enable {
-      enable = true;
+      enable = mkForce true;
       package = mkIf cfg.enableUnstableVersion pkgs.unstable.zed-editor;
 
       userSettings = {
         theme = {
-          mode = "system";
-          light = "Catppuccin Latte";
-          dark = "Catppuccin Macchiato";
+          mode = mkDefault "system";
+          light = mkDefault "Catppuccin Latte";
+          dark = mkDefault "Catppuccin Macchiato";
         };
 
         features = {
@@ -42,9 +47,10 @@ in
 
         terminal = {
           font_family = mkDefault "FiraCode Nerd Font Mono";
-          font_size = mkDefault 18;
+          font_size = mkDefault 16;
           env = {
-            TERM = "xterm-256color";
+            # fix: can't use deleting key in terminal
+            TERM = mkForce "xterm-256color";
           };
         };
 
@@ -53,12 +59,12 @@ in
           npm_path = lib.getExe' pkgs.nodejs "npm";
         };
 
-        hour_format = "hour24";
+        hour_format = mkDefault "hour24";
 
         auto_update = mkDefault false;
 
         confirm_quit = mkDefault true;
-        restore_on_startup = "none";
+        restore_on_startup = mkDefault "none";
 
         tabs = {
           close_position = mkDefault "right";
@@ -70,40 +76,40 @@ in
         proxy = mkDefault "http://localhost:7890";
 
         # direnv integration
-        load_direnv = "shell_hook";
+        load_direnv = mkDefault "shell_hook";
 
         languages = {
           # Nix language
           "Nix" = {
-            tab_size = 2;
+            tab_size = mkDefault 2;
             "formatter" = {
               "external" = {
-                command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-                arguments = [ "-s" ];
+                command = mkDefault "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+                arguments = mkDefault [ "-s" ];
               };
             };
-            "language_servers" = [
+            "language_servers" = mkDefault [
               "nixd"
               "!nil" # disable nil
             ];
           };
           # Rust language
           "Rust" = {
-            tab_size = 4;
-            hard_tabs = false;
+            tab_size = mkDefault 4;
+            hard_tabs = mkDefault false;
           };
         };
       };
 
       # List of extensions
       # https://github.com/zed-industries/extensions/tree/main/extensions
-      extensions = [
+      extensions = mkDefault [
         "catppuccin"
         "nix"
         "env"
       ];
 
-      userKeymaps = [
+      userKeymaps = mkDefault [
         # In normal & visual mode
         {
           context = "Editor && (vim_mode == normal || vim_mode == visual)";
