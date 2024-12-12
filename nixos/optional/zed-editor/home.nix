@@ -16,8 +16,6 @@ let
   cfg = config.home.programs.zed-editor;
 in
 {
-  imports = [ ./keymap/home.nix ];
-
   options.home.programs.zed-editor = {
     enable = mkEnableOption "zed-editor";
     enableUnstableVersion = mkEnableOption "unstable version of zed-editor" // {

@@ -1,15 +1,14 @@
 {
   # current,
-  pkgs,
   # lib,
   ...
 }:
-# let
-#   inherit (lib) mkDefault;
-# in
 {
 
-  imports = [ ./gnome ];
+  imports = [
+    ./gnome
+    ./zed-editor
+  ];
 
   # home.packages = with pkgs; [ ];
 
