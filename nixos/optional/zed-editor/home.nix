@@ -49,12 +49,14 @@ in
         # Fonts Options
         ui_font_size = mkDefault 22;
         buffer_font_size = mkDefault 20;
+        terminal.font_size = mkDefault 18;
         ui_font_weight = mkDefault 500;
         buffer_font_weight = mkDefault 500;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";
         ui_font_family = mkDefault "Zed Plex Sans";
         terminal.font_familly = mkDefault "FiraCode Nerd Font Mono";
-        terminal.font_size = mkDefault 18;
+        buffer_font_fallbacks = [ "PingFang SC" ];
+        ui_font_fallbacks = [ "PingFang SC" ];
 
         # Terminal Options
         terminal = {
