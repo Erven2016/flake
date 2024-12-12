@@ -1,22 +1,18 @@
 {
-  # current,
-  # lib,
-  ...
-}:
-{
-
   imports = [
     ./gnome
     ./zed-editor
   ];
 
-  # home.packages = with pkgs; [ ];
+  # Custom programs' options
+  home.programs = {
+    joshuto.enable = true;
+    zed-editor.enable = true;
+    direnv.enable = true;
+  };
 
-  home.programs.joshuto.enable = true;
-  home.programs.zed-editor.enable = true;
+  # Home-manager programs' options
   programs.zsh.oh-my-zsh.plugins = [ "rust" ];
-  home.programs.direnv.enable = true;
-
   programs.git.extraConfig = {
     user = {
       email = "leiguihua2016@gmail.com";
