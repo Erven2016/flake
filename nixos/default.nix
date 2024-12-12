@@ -9,12 +9,11 @@ let
 in
 {
   imports = [
-    ./_system
-    ./_home
-    ./_nixpkgs
+    ./system
 
-    ./gnome/_system.nix
-    ./components/_system.nix
+    ./gnome/system.nix
+    ./components/system.nix
+    ./optional/system.nix
   ];
 
   config = {
@@ -24,18 +23,19 @@ in
       { config, ... }:
       mkMerge [
         (import ../users/${username} { inherit lib pkgs; })
-        ({
+        {
           extraGroups = mkMerge [
             (mkIf (builtins.elem username current.components.kvm.allowUsers) [ "libvirtd" ])
           ];
-        })
-        ({
+
           isNormalUser = true;
 
           shell = mkDefault pkgs.bash; # set default shell
           ignoreShellProgramCheck = true;
-          packages = [ config.shell ];
-        })
+          packages = [
+            config.shell # make sure that default shell is installed
+          ];
+        }
       ]
     );
 
@@ -50,7 +50,7 @@ in
 
         # import home-mananger submodules
         (import ./optional/home.nix)
-        (import ./components/_home.nix)
+        (import ./components/home.nix)
 
         # import home.nix where located in `root/user/${username}` for specified user
         (import ../users/${username}/home.nix)

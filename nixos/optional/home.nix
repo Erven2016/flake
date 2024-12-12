@@ -1,12 +1,12 @@
 {
   imports = [
-    ./joshuto/_home.nix
-    ./git/_home.nix
-    ./navi/_home.nix
+    ./joshuto/home.nix
+    ./git/home.nix
+    ./navi/home.nix
     ./zed-editor/home.nix
-    ./helix/_home.nix
-    ./direnv/_home.nix
-    ./zsh/_home.nix
-    ./fish/_home.nix
+    ./helix/home.nix
+    ./direnv/home.nix
+    ./zsh/home.nix
+    ./fish/home.nix
   ];
 }

@@ -13,6 +13,8 @@ in
     ./sound
     ./fonts
     ./powerManagement
+    ./home-manager
+    ./nixpkgs
   ];
 
   config = {
