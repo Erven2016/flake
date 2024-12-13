@@ -36,6 +36,7 @@ in
     desktop = mkOption {
       type = types.enum [
         "gnome"
+        "cosmic"
         null
       ];
       default = null;

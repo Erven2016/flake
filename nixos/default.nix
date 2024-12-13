@@ -11,7 +11,10 @@ in
   imports = [
     ./system
 
+    # Desktops
     ./gnome/system.nix
+    ./cosmic/system.nix
+
     ./components/system.nix
     ./optional/system.nix
   ];

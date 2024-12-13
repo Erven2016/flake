@@ -16,7 +16,8 @@ in
 
   imports = [ ./nerdfonts.nix ];
 
-  config = mkIf ((current.hasTag "server") != true) {
+  # NOTE: only enable fonts in GUI enviroment
+  config = mkIf (current.desktop != null) {
     fonts = {
       enableDefaultPackages = mkDefault true;
       fontDir.enable = mkDefault true;

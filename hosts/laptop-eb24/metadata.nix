@@ -17,7 +17,7 @@
       enable = true;
       allowUsers = [ "erven2016" ];
     };
-    waydroid.enable = true;
+    # waydroid.enable = true;
     docker = {
       enable = true;
       allowUsers = [ "erven2016" ];
