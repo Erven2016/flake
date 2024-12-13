@@ -147,7 +147,7 @@ in
         '';
         example = [
           "username1"
-          "erven2016"
+          "username2"
         ];
         default = [ ];
       };

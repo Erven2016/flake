@@ -26,6 +26,7 @@ in
         {
           extraGroups = mkMerge [
             (mkIf (builtins.elem username current.components.kvm.allowUsers) [ "libvirtd" ])
+            (mkIf (builtins.elem username current.components.docker.allowUsers) [ "docker" ])
           ];
 
           isNormalUser = true;
