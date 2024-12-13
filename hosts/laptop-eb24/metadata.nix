@@ -17,8 +17,6 @@
       enable = true;
       allowUsers = [ "erven2016" ];
     };
-    devenv.enable = true;
+    waydroid.enable = true;
   };
-
-  nix.allowUsers = [ "erven2016" ];
 }
