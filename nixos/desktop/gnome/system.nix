@@ -8,8 +8,6 @@ let
   inherit (lib) mkIf mkMerge;
 in
 {
-  imports = [ ../shared_modules/input_methods/ibus.nix ];
-
   config = mkIf (current.desktop == "gnome") {
     services.xserver = {
       enable = true;

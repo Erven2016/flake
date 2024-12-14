@@ -15,6 +15,7 @@ in
     ./powerManagement
     ./home-manager
     ./nixpkgs
+    ./inputMethods
   ];
 
   config = {

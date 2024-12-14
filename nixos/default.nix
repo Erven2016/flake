@@ -11,10 +11,7 @@ in
   imports = [
     ./system
 
-    # Desktops
-    ./gnome/system.nix
-    ./cosmic/system.nix
-
+    ./desktop/system.nix
     ./components/system.nix
     ./optional/system.nix
   ];
@@ -55,7 +52,7 @@ in
         # import home-mananger submodules
         (import ./optional/home.nix)
         (import ./components/home.nix)
-        (import ./gnome/home.nix)
+        (import ./desktop/home.nix)
 
         # import home.nix where located in `root/user/${username}` for specified user
         (import ../users/${username}/home.nix)

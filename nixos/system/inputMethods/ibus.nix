@@ -8,7 +8,8 @@ let
   inherit (lib) mkMerge mkIf;
 in
 {
-  config = mkIf (current.desktop != null) {
+  # should only support for GTK-based desktops
+  config = mkIf (current.desktop == "gnome") {
     i18n.inputMethod = {
       enable = true;
       type = "ibus";

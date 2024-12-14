@@ -37,6 +37,7 @@ in
       type = types.enum [
         "gnome"
         "cosmic"
+        "kde"
         null
       ];
       default = null;

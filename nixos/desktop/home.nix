@@ -1,0 +1,1 @@
+{ imports = [ ./gnome/home.nix ]; }
