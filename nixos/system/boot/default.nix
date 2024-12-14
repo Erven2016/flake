@@ -16,11 +16,6 @@ let
 in
 {
 
-  imports = [
-    # ./plymouth.nix
-    ./secure-boot.nix
-  ];
-
   config = {
     boot.loader = {
       efi = mkIf (current.isEFI) {
