@@ -13,7 +13,6 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.impermanence.nixosModules.impermanence
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
@@ -62,6 +61,7 @@
     options = [
       "relatime"
       "mode=755"
+      "size=5%"
     ];
   };
 

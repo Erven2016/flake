@@ -1,7 +1,13 @@
 {
-  tags = [ "laptop" ];
+  tags = [
+    "laptop"
+    "agenix"
+  ];
   desktop = "gnome";
-  users = [ "erven2016" ];
+  users = [
+    "erven2016"
+    "test"
+  ];
   i18n = {
     supportedLocales = [ "zh_CN.UTF-8/UTF-8" ];
   };

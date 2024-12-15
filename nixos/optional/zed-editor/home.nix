@@ -1,4 +1,5 @@
-# Avaliable Options: https://github.com/nix-community/home-manager/blob/master/modules/programs/zed-editor.nix
+# Avaliable Options
+# https://github.com/nix-community/home-manager/blob/master/modules/programs/zed-editor.nix
 {
   lib,
   pkgs,
@@ -47,9 +48,9 @@ in
         tab_size = mkDefault 2;
 
         # Fonts Options
-        ui_font_size = mkDefault 16;
-        buffer_font_size = mkDefault 16;
-        terminal.font_size = mkDefault 16;
+        ui_font_size = mkDefault 18;
+        buffer_font_size = mkDefault 18;
+        terminal.font_size = mkDefault 18;
         ui_font_weight = mkDefault 500;
         buffer_font_weight = mkDefault 500;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";

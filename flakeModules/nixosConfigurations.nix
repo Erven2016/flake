@@ -27,8 +27,11 @@ in
 
       _modules = hostname: [
         ../nixos
+        ../secrets
 
         inputs.home-manager.nixosModules.home-manager
+        inputs.agenix.nixosModules.default
+        inputs.impermanence.nixosModules.impermanence
 
         (hostsDir + "/${hostname}/configuration.nix")
       ];

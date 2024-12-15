@@ -28,6 +28,8 @@
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     impermanence.url = "github:nix-community/impermanence";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
@@ -36,9 +38,9 @@
       imports = [ ./flakeModules/nixosConfigurations.nix ];
       debug = true;
       systems = [ "x86_64-linux" ];
-      # perSystem = {
-      #   imports = [ ];
-      # };
+      perSystem = {
+        imports = [ ];
+      };
 
       flake = {
         imports = [ ./templates ];

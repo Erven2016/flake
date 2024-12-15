@@ -24,13 +24,11 @@ in
       mkMerge [
         (import ../users/${username} { inherit lib pkgs; })
         {
+          isNormalUser = true;
           extraGroups = mkMerge [
             (mkIf (builtins.elem username current.components.kvm.allowUsers) [ "libvirtd" ])
             (mkIf (builtins.elem username current.components.docker.allowUsers) [ "docker" ])
           ];
-
-          isNormalUser = true;
-
           shell = mkDefault pkgs.bash; # set default shell
           ignoreShellProgramCheck = true;
           packages = [

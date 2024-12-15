@@ -2,7 +2,6 @@
 {
 
   extraGroups = [
-    "docker"
     "wheel"
     "networkmanager"
   ];
