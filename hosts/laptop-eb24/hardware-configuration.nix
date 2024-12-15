@@ -6,11 +6,36 @@
   lib,
   pkgs,
   modulesPath,
+  inputs,
   ...
 }:
 
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.impermanence.nixosModules.impermanence
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
+
+  environment.systemPackages = [
+    # For debugging and troubleshooting Secure Boot.
+    pkgs.sbctl
+  ];
+
+  # to use TPM-based FDE
+  boot.bootspec.enable = true;
+  boot.initrd.systemd.enable = true;
+
+  # Lanzaboote currently replaces the systemd-boot module.
+  # This setting is usually set to true in configuration.nix
+  # generated at installation time. So we force it to false
+  # for now.
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
 
   boot.initrd.availableKernelModules = [
     "nvme"
@@ -24,28 +49,67 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  boot.bootspec.enable = true;
-  boot.initrd.systemd.enable = true;
-
-  boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/31f3dec8-d7b0-45c2-8980-92e6cf576eff";
-    preLVM = true;
+  boot.initrd.luks.devices = {
+    crypted = {
+      device = "/dev/disk/by-uuid/02402989-5517-4f44-a65a-b25e543bebf1";
+      preLVM = true;
+    };
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1b263046-3984-424c-8d30-90ce19bc58d5";
-    fsType = "btrfs";
-    options = [ "subvol=root" ];
+    device = "tmpfs";
+    fsType = "tmpfs";
+    options = [
+      "relatime"
+      "mode=755"
+    ];
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/1b263046-3984-424c-8d30-90ce19bc58d5";
+  fileSystems."/etc/secureboot" = {
+    device = "/dev/disk/by-uuid/5b80bc3f-6b7b-4c25-b3f6-cfba87bcf7bd";
     fsType = "btrfs";
-    options = [ "subvol=home" ];
+    options = [ "subvol=secureboot" ];
   };
+
+  fileSystems."/persistent" = {
+    device = "/dev/disk/by-uuid/5b80bc3f-6b7b-4c25-b3f6-cfba87bcf7bd";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=persistent" ];
+  };
+
+  environment.persistence."/persistent" = {
+    hideMounts = true;
+
+    directories = [
+      "/etc/NetworkManager/system-connections"
+      "/home"
+      "/root"
+      "/var"
+    ];
+
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+    ];
+  };
+
+  systemd.services.nix-daemon = {
+    environment = {
+      TMPDIR = "/var/cache/nix";
+    };
+    serviceConfig = {
+      CacheDirectory = "nix";
+    };
+  };
+
+  environment.variables.NIX_REMOTE = "daemon";
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/1b263046-3984-424c-8d30-90ce19bc58d5";
+    device = "/dev/disk/by-uuid/5b80bc3f-6b7b-4c25-b3f6-cfba87bcf7bd";
     fsType = "btrfs";
     options = [ "subvol=nix" ];
   };
@@ -59,7 +123,7 @@
     ];
   };
 
-  swapDevices = [ { device = "/dev/disk/by-uuid/d815e417-479b-41ce-8172-7954090d86d7"; } ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/bf993d35-bb14-4a39-9240-d21bd14cc310"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -67,6 +131,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp195s0f3u1u4.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp197s0f3u1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

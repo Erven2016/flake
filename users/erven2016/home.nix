@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./gnome
@@ -19,4 +20,6 @@
       name = "erven2016";
     };
   };
+
+  home.packages = with pkgs; [ unstable.flclash ];
 }

@@ -47,9 +47,9 @@ in
         tab_size = mkDefault 2;
 
         # Fonts Options
-        ui_font_size = mkDefault 22;
-        buffer_font_size = mkDefault 20;
-        terminal.font_size = mkDefault 18;
+        ui_font_size = mkDefault 16;
+        buffer_font_size = mkDefault 16;
+        terminal.font_size = mkDefault 16;
         ui_font_weight = mkDefault 500;
         buffer_font_weight = mkDefault 500;
         buffer_font_family = mkDefault "BlexMono Nerd Font Mono";

@@ -44,7 +44,7 @@ in
       "PingFang HK"
     ];
 
-    # networking.proxy.allProxy = "http://127.0.0.1:7890";
+    networking.proxy.allProxy = "http://127.0.0.1:7890";
 
     hardware.graphics = {
       ## radv: an open-source Vulkan driver from freedesktop

@@ -23,8 +23,11 @@
     nur-erven2016.url = "github:erven2016/nur/master";
 
     # Cosmic desktop
-    nixpkgs.follows = "nixos-cosmic/nixpkgs-stable"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+    # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+    nixpkgs.follows = "nixos-cosmic/nixpkgs-stable";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs =
