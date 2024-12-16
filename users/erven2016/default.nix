@@ -1,6 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, superConfig, ... }:
 {
-
   extraGroups = [
     "wheel"
     "networkmanager"
@@ -13,6 +12,7 @@
     unstable.appstream
   ];
 
-  password = "1234567890";
+  # password = "1234567890";
+  hashedPasswordFile = superConfig.age.secrets.erven2016_password.path;
 
 }

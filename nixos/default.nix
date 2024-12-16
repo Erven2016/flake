@@ -2,10 +2,13 @@
   lib,
   current,
   pkgs,
+  config,
   ...
 }:
 let
   inherit (lib) mkMerge mkIf mkDefault;
+
+  superConfig = config;
 in
 {
   imports = [
@@ -22,7 +25,7 @@ in
       username:
       { config, ... }:
       mkMerge [
-        (import ../users/${username} { inherit lib pkgs; })
+        (import ../users/${username} { inherit lib pkgs superConfig; })
         {
           isNormalUser = true;
           extraGroups = mkMerge [

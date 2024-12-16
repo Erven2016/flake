@@ -12,6 +12,6 @@ in
   config = mkIf (current.hasTag "agenix") {
     environment.systemPackages = [ inputs.agenix.packages.${current.architecture}.default ];
 
-    age.identityPaths = [ "/persistent/home/erven2016/.ssh" ];
+    age.identityPaths = [ "/persistent/secrets/secrets" ];
   };
 }
