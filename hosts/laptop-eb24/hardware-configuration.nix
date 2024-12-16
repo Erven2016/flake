@@ -61,7 +61,7 @@
     options = [
       "relatime"
       "mode=755"
-      "size=5%"
+      "size=512M"
     ];
   };
 
