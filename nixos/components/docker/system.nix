@@ -1,9 +1,4 @@
-{
-  current,
-  lib,
-  config,
-  ...
-}:
+{ current, lib, ... }:
 let
   inherit (lib) mkIf;
 
@@ -14,7 +9,7 @@ in
     virtualisation.docker = {
       enable = true;
 
-      storageDriver = mkIf (config.fileSystems."/".fsType == "btrfs") "btrfs";
+      storageDriver = mkIf (current.hasTag "btrfs") "btrfs";
 
       # rootless = {
       #   enable = true;

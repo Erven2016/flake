@@ -2,6 +2,7 @@
   tags = [
     "laptop"
     "agenix"
+    "btrfs"
   ];
   desktop = "gnome";
   users = [
