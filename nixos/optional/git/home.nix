@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkEnableOption mkDefault mkIf;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.home.programs.git;
 in
@@ -17,7 +17,7 @@ in
 
   config.programs.git = {
     enable = cfg.enable;
-    extraConfig = mkDefault {
+    extraConfig = {
       init = {
         defaultBranch = "main";
       };
