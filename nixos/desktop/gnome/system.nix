@@ -14,7 +14,7 @@ in
       displayManager = {
         gdm = {
           enable = true;
-          wayland = current.enableWayland;
+          wayland = lib.mkDefault true;
         };
       };
       desktopManager.gnome.enable = true;

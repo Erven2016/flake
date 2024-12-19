@@ -13,28 +13,11 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.lanzaboote.nixosModules.lanzaboote
+
+    ./persistent
+    ./secure/secureboot.nix
+    ./nix/nix-daemon.nix
   ];
-
-  environment.systemPackages = [
-    # For debugging and troubleshooting Secure Boot.
-    pkgs.sbctl
-  ];
-
-  # to use TPM-based FDE
-  boot.bootspec.enable = true;
-  boot.initrd.systemd.enable = true;
-
-  # Lanzaboote currently replaces the systemd-boot module.
-  # This setting is usually set to true in configuration.nix
-  # generated at installation time. So we force it to false
-  # for now.
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
 
   boot.initrd.availableKernelModules = [
     "nvme"
@@ -77,36 +60,6 @@
     neededForBoot = true;
     options = [ "subvol=persistent" ];
   };
-
-  environment.persistence."/persistent" = {
-    hideMounts = true;
-
-    directories = [
-      "/etc/NetworkManager/system-connections"
-      "/home"
-      "/root"
-      "/var"
-    ];
-
-    files = [
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-    ];
-  };
-
-  systemd.services.nix-daemon = {
-    environment = {
-      TMPDIR = "/var/cache/nix";
-    };
-    serviceConfig = {
-      CacheDirectory = "nix";
-    };
-  };
-
-  environment.variables.NIX_REMOTE = "daemon";
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/5b80bc3f-6b7b-4c25-b3f6-cfba87bcf7bd";

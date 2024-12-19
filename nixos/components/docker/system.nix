@@ -9,7 +9,7 @@ in
     virtualisation.docker = {
       enable = true;
 
-      storageDriver = mkIf (current.hasTag "btrfs") "btrfs";
+      storageDriver = mkIf (current.kits.hasTag "btrfs") "btrfs";
 
       # rootless = {
       #   enable = true;

@@ -14,7 +14,6 @@ in
     ./fonts
     ./powerManagement
     ./home-manager
-    ./nixpkgs
     ./inputMethods
   ];
 
@@ -33,8 +32,10 @@ in
       settings.auto-optimise-store = mkDefault true;
     };
 
+    # Allow unfree packages of Nixpkgs
     nixpkgs.config.allowUnfree = current.allowUnfreePackages;
 
+    # Enable experiment nix command and flake
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"

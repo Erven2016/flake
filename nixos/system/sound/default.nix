@@ -1,22 +1,24 @@
 { lib, current, ... }:
 let
-  inherit (lib) mkIf mkDefault;
+  inherit (lib) mkIf;
+
+  isPipewireEnabled = if (current.sound.preferBackend == "pipewire") then true else false;
 in
 {
-  config = mkIf (current.isDesktopEnabled) {
+  config = mkIf (current.sound.enable) {
     services.pipewire = {
-      enable = current.sound.enable;
+      enable = isPipewireEnabled;
 
-      alsa.enable = mkDefault true;
-      alsa.support32Bit = mkDefault true;
-      pulse.enable = mkDefault true;
-
-      jack.enable = mkDefault false;
+      # Alsa
+      alsa.enable = (current.sound.pipewire.enableAlsa);
+      alsa.support32Bit = (current.sound.pipewire.enableAlsa32BitSupport);
+      # PulseAudio
+      pulse.enable = (current.sound.pipewire.enablePulseaudio);
+      # Jack
+      jack.enable = (current.sound.pipewire.enableJack);
     };
 
     # rtkit is recommanded to install with pipewire.
-    security.rtkit.enable = mkDefault true;
-
-    hardware.pulseaudio.enable = false;
+    security.rtkit.enable = isPipewireEnabled;
   };
 }

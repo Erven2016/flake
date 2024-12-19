@@ -27,11 +27,6 @@ in
       };
     };
 
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-
     fonts.packages = with pkgs; [
       erven2016.fonts.otf-pingfang
       lxgw-wenkai-tc

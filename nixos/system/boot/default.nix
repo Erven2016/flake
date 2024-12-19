@@ -1,18 +1,6 @@
-{
-  current,
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ current, lib, ... }:
 let
-  inherit (lib)
-    mkIf
-    mkDefault
-    mkOption
-    types
-    ;
-
+  inherit (lib) mkIf mkDefault;
 in
 {
 
@@ -31,7 +19,7 @@ in
         memtest86.enable = mkDefault true;
         netbootxyz.enable = mkDefault true;
         consoleMode = mkDefault "keep";
-        configurationLimit = current.bootRollbackConfigurationsLimit;
+        configurationLimit = current.boot.bootRollbackConfigurationsLimit;
       };
     };
 
