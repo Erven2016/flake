@@ -1,6 +1,6 @@
 {
   imports = [
     ./nixpkgs.nix
-    ./gnome.nix
+    # ./gnome.nix
   ];
 }
