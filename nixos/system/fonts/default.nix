@@ -27,7 +27,7 @@ in
         (with pkgs; [
           corefonts # Microsoft's TrueType core fonts for the Web
 
-          # installing noto-cjk fonts to display CJK defaultly
+          # installing noto-cjk fonts to display CJK
           noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif

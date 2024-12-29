@@ -62,6 +62,7 @@ in
     environment.sessionVariables = {
       # to fix black border of some gnome applications
       # see: https://gitlab.gnome.org/GNOME/gtk/-/issues/6890
+
       GSK_RENDERER = "ngl";
     };
 

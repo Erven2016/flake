@@ -10,6 +10,8 @@ in
         canTouchEfiVariables = mkDefault true;
         efiSysMountPoint = current.efiSysMountPoint;
       };
+
+      # TODO: refactor this, when use grub or systemd-boot depends on isEFI
       grub = mkIf (current.bootloader == "grub") {
         efiSupport = current.isEFI;
         device = current.grubDevice;
