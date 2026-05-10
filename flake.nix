@@ -1,49 +1,49 @@
 {
-  description = "A flake to manage all my machines.";
+  description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # SecureBoot
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
-      # Optional but recommended to limit the size of your system closure.
+      url = "github:nix-community/lanzaboote/v1.0.0";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # NURs
-    nur-erven2016.url = "github:erven2016/nur/master";
-
-    # Cosmic desktop
-    # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
-    nixpkgs.follows = "nixos-cosmic/nixpkgs-stable";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-
-    impermanence.url = "github:nix-community/impermanence";
-
-    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
-    inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ ./flakeModules/nixosConfigurations.nix ];
-      debug = true;
-      systems = [ "x86_64-linux" ];
-      perSystem = {
-        imports = [ ];
-      };
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
+    }@inputs:
+    let
+    in
+    {
+      nixosConfigurations."bshell" = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./machines/tablet-bshell
 
-      flake = {
-        imports = [ ./templates ];
+          inputs.lanzaboote.nixosModules.lanzaboote
+
+          # To use nixpkg-unstable
+          {
+            nixpkgs.overlays = [
+              (final: _prev: {
+                unstable = import nixpkgs-unstable {
+                  inherit (_prev) hostPlatform config;
+                };
+              })
+            ];
+          }
+
+        ];
       };
     };
 }
